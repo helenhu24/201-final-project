@@ -24,7 +24,7 @@ body {
 	position: absolute;
 	width: 826px;
 	height: 578px;
-	left: 180px;
+	left: 300px;
 	top: 215px;
 }
 
@@ -37,16 +37,16 @@ body {
   flex-basis: 400px;
   position: relative;
   top: 60px;
-  left: 140px;
+  left: 275px;
 }
 
 h1 {
 	position: absolute;
-	left: 180px;
+	left: 300px;
 	top: 100px;
 	color: #366DFC;
 	font-weight: 600;
-	font-size: 42px;
+	font-size: 48px;
 	letter-spacing: -0.02em;
 }
 
