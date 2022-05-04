@@ -1,0 +1,128 @@
+body {
+    font-size: 14px;
+    font-family: 'Work Sans', sans-serif;
+    background: #FBFBFB;
+    margin: 0% 0%;
+}
+
+.inpcontainer {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+
+}
+
+.inpcontainer-item {
+  flex-basis: 720px;
+  text-align: left;
+}
+
+.inpcontainer-detailsbox {
+	position: relative;
+	width: 1398px;
+	height: 139px;
+	left: 238px;
+	margin-bottom: 30px;
+	background: #FFFFFF;
+	box-shadow: 3px 7px 10px rgba(0, 0, 0, 0.09);
+	border-radius: 20px;
+}
+
+.inpcontainer-info {
+	padding-top: 24px;
+	margin-left: 38px;
+}
+
+h1 {
+	all: unset;
+	display: inline-block;
+	font-style: semibold;
+	font-weight: 900;
+	font-size: 30px;
+	color: #4E75F5;
+	margin-left: 10px;
+	margin-bottom: 6px;
+}
+
+h2 {
+	all: unset;
+	display: inline-block;
+	font-weight: 600;
+	font-size: 16px;
+	color: #1A1D1E;
+	margin-left: 10px;
+	margin-bottom: 6px;
+}
+
+h3 {
+	all: unset;
+	display: inline-block;
+	font-style: semibold;
+	font-weight: 400;
+	font-size: 12px;
+	color: #1A1D1E;
+	margin-left: 10px;
+	margin-top: 4px;
+}
+
+.statuscontainer {
+	position: absolute;
+	left: 300px;
+	top: 32px;
+	font-size: 16px;
+	font-weight: 400;
+	text-align: top;
+}
+
+input[type=radio] {
+	position: relative;
+	top: 2px;
+	width: 16px;
+	height: 16px;
+	background: #5A5A5A;
+	border: 4px solid #E7E5E5;
+	box-sizing: border-box;
+}
+
+label {
+	position: relative;
+	bottom: 1px;
+	padding-left: 2px;
+	padding-right: 6px;
+	font-family: 'Work Sans';
+	font-style: semibold;
+	font-weight: 600;
+	font-size: 14px;
+	color: #5A5A5A;
+}
+
+.changestatusbutton {
+	all: unset;
+	text-align: center;
+	position: relative;
+	color: white;
+	background: #2947A9;
+	border-radius: 35px;
+	height: 26px;
+	width: 200px;
+	margin-top: 8px;
+	font-family: 'Work Sans';
+	font-weight: 300;
+	font-size: 14px;
+}
+
+.changestatusbutton:hover {
+	cursor: pointer;
+}
+
+.delbutton {
+	all: unset;
+	background:none;
+    border:none;
+    font-size: 40px;
+    color:  #EA0B0B;
+    cursor: pointer;
+    position: relative;
+    left: 820px;
+    bottom: 10px;
+}

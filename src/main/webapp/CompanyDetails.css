@@ -1,6 +1,7 @@
 body {
     font-size: 14px;
     font-family: 'Work Sans', sans-serif;
+    background: #FBFBFB;
     margin: 0% 0%;
 }
 
@@ -24,7 +25,7 @@ body {
 	position: absolute;
 	width: 826px;
 	height: 578px;
-	left: 300px;
+	left: 310px;
 	top: 215px;
 }
 
@@ -36,13 +37,13 @@ body {
 .inpcontainer-status {
   flex-basis: 400px;
   position: relative;
-  top: 60px;
-  left: 275px;
+  top: 90px;
+  left: 295px;
 }
 
 h1 {
 	position: absolute;
-	left: 300px;
+	left: 320px;
 	top: 100px;
 	color: #366DFC;
 	font-weight: 600;

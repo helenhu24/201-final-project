@@ -1,6 +1,7 @@
 body {
     font-size: 14px;
     font-family: 'Work Sans', sans-serif;
+    background: #FBFBFB;
     margin: 0% 0%;
 }
 
@@ -8,8 +9,8 @@ body {
   display: flex;
   align-items: left;
   justify-content: left;
-  margin-left: 30%;
-
+  margin-left: 32%;
+  margin-top: 4%;
 }
 
 .inpcontainer-item {
