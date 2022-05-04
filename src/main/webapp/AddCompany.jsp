@@ -20,7 +20,7 @@
 	  <input type="text" id="companyname" name="companyname" placeholder="Company Name" class="name"><p>
 	  <h2>Stages:</h2><p>
 	  <div id = "stagecontainer">
-	  <input type="text" id="stage" name="stage" placeholder="Add New" class="stages"><p>
+	  <input type="text" id="stage" name="1" placeholder="Add New" class="stages"><p>
 	  </div>
 	  <button type="button" id = "addstage" class="addstagebutton">+ Add Stage</button><p>
 	  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
@@ -30,6 +30,10 @@
 </div>
 </body>
 <script type="text/javascript">
+
+
+	document.querySelector("#delstage").style.visibility = "hidden";
+	
 	var button = document.querySelector("#addstage");
 	button.onclick = function(event){
 		addStage(event);
@@ -43,20 +47,27 @@
     function submit(form) {
     	form.submit();
     }
-    var i = 0;
+    var i = 2;
     function addStage(event){
     	event.preventDefault();
     	var stage = document.querySelector("#stagecontainer");
     	var ele = document.createElement("div");
-    	ele.innerHTML = "<input type='text' id='stage' name='stage" + i + "' placeholder='Add New' class='stages'><p>"
+    	ele.innerHTML = "<input type='text' id='stage' name='" + i + "' placeholder='Add New' class='stages'><p>"
     	i++;
     	stage.appendChild(ele);
+    	document.querySelector("#delstage").style.visibility = "visible";
     	
     }
 	function delStage(event){
     	event.preventDefault();
     	var stage = document.querySelector("#stagecontainer");
     	stage.removeChild(stage.lastChild);
+    	i--;
+    	var count = stage.getElementsByTagName('div').length;
+    	console.log(count);
+    	if(count <= 0){
+    		document.querySelector("#delstage").style.visibility = "hidden";
+    	}
 	}
 </script>
 </html>
