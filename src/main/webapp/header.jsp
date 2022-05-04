@@ -11,7 +11,7 @@ body {
 }
 
 ul {
-  padding: 20px 80px 40px 40px;
+  padding: 20px 80px 0px 40px;
   list-style-type: none;
   overflow: hidden;
 }
