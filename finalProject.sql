@@ -81,14 +81,13 @@ DROP TABLE IF EXISTS `Final_Project`.`stages` ;
 
 CREATE TABLE IF NOT EXISTS `Final_Project`.`stages` (
   `stageID` INT NOT NULL,
-  `companyName` VARCHAR(45) NOT NULL,
+  `companyID` INT NOT NULL,
   `stepnum` INT NULL,
   `stage` VARCHAR(250) NULL,
   `people` INT NULL,
-  PRIMARY KEY (`stageID`),
-  CONSTRAINT `companyName`
-    FOREIGN KEY (`companyName`)
-    REFERENCES `Final_Project`.`Company` (`companyName`)
+  PRIMARY KEY (`stageID`, `companyID`),
+    FOREIGN KEY (`companyID`)
+    REFERENCES `Final_Project`.`Company` (`companyID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
