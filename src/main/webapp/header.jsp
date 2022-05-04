@@ -40,8 +40,27 @@ li a:hover {
 <body>
 
 <ul>
-      <li><span class="name">Hi {name}!</span></li>
-      <li><a href="LogoutDispatcher?param=value">Logout</a></li>
+      <li><span class="name">
+	    <% String uName = "";
+	    String log = "Login.jsp";
+	    boolean loggedIn = false;
+	    for (Cookie c : request.getCookies()){
+	    	if (c.getName().compareTo("userName") == 0) {
+	    		uName = c.getValue();
+	    		loggedIn = true;
+	    	}
+	    }
+		if (loggedIn) { 
+			out.println("Hi " + uName.replace("#", " "));
+			log = "LogoutDispatcher";
+		}
+		%>
+      </span></li>
+      <li><a href=<%=log %>>
+    	<% if (loggedIn) out.println("Log Out");
+    	else out.println("Login / Register");
+					%>
+      </a></li>
       <li><a href="index.jsp">Dashboard</a></li>
       <li><a href="AddCompany.jsp">Add New</a></li>
 </ul>
