@@ -24,12 +24,30 @@
   <div class='inpcontainer-detailsbox'>
   <div class='inpcontainer-details'>
   <h2>Current Applicant Statistics</h2>
+  <table id="stagestats">
+  <tr>
+    <th style="padding-right: 150px;">Current Stage</th>
+    <th>Number of Applicants</th>
+  </tr>
+  <tr>
+    <td>Example 1</td>
+    <td>420,420</td>
+  </tr>
+  <tr>
+    <td>Example 2</td>
+    <td>69,696,969</td>
+  </tr>
+</table>
   </div>
   </div>
 </div>
 <div class='inpcontainer-status'>
 <h2>Your Status:</h2><br>
-
+<form id="changeStatus" action="changeStatus" method="post">
+<input type="radio" id="stage1" name="status" value="stage1"><label for="stage1">Example 1</label><p>
+<input type="radio" id="stage2" name="status" value="stage2"><label for="stage2">Example 2</label><p>
+<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
+</form>
 </div>
 </div>
 </body>

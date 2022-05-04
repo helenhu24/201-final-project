@@ -51,6 +51,7 @@ h1 {
 }
 
 h2 {
+	margin-bottom: 5px;
 	font-style: semibold;
 	font-weight: 600;
 	font-size: 28px;
@@ -98,22 +99,59 @@ input[type=text]:focus {
 	box-shadow: 2px 6px 4px rgba(0, 0, 0, 0.1);
 }
 
+input[type=radio] {
+	position: relative;
+	width: 16px;
+	height: 16px;
+	background: #5A5A5A;
+	border: 4px solid #E7E5E5;
+	box-sizing: border-box;
+}
+
+label {
+	position: relative;
+	left: 4px;
+	bottom: 4px;
+	font-family: 'Work Sans';
+	font-style: semibold;
+	font-weight: 600;
+	font-size: 16px;
+	color: #5A5A5A;
+}
+
 ::placeholder {
 	color: #9F9F9F;
 }
 	
-.addbutton {
+.changestatusbutton {
 	all: unset;
 	text-align: center;
 	position: relative;
 	color: white;
 	background: #2947A9;
 	border-radius: 35px;
-	height: 40px;
-	width: 400px;
+	height: 26px;
+	width: 200px;
 	margin-top: 6px;
+	font-family: 'Work Sans';
+	font-weight: 100;
+	font-size: 14px;
 }
 
-.addbutton:hover {
-      cursor: pointer;
-    }
+.changestatusbutton:hover {
+	cursor: pointer;
+}
+
+th {
+	font-size: 22px;
+	color: #2947A9;
+	padding-bottom: 5px;
+}
+
+td {
+	padding-top: 12px;
+	padding-bottom: 8px;
+	font-weight: 500;
+	font-size: 18px;
+	color: #5A5A5A;
+}
