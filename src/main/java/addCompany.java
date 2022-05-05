@@ -32,12 +32,13 @@ public class addCompany extends HttpServlet{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(db,"user", "pass");
 //			how to store which step person is at? name,numapps
-			String sqlmain = "Insert into company values(?,0)";
+			String sqlmain = "Insert into Company(companyName,numApps) values (?,0);";
 			PreparedStatement prep = conn.prepareStatement(sqlmain);
 			prep.setString(1, name);
 			prep.executeUpdate();
-			String sql = "Select companyID from Company where companyName like '?'";
+			String sql = "Select companyID from Company where companyName like '?';";
 			PreparedStatement prep2 = conn.prepareStatement(sql);
+			prep2.setString(1, name);
 			ResultSet res = prep2.executeQuery();
 			res.next();
 			coID = res.getInt("companyID");
