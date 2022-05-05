@@ -1,0 +1,158 @@
+body {
+    font-size: 14px;
+    font-family: 'Work Sans', sans-serif;
+    background: #FBFBFB;
+    margin: 0% 0%;
+}
+
+.inpcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+.inpcontainer-item {
+	text-align: left;
+	margin: 12px;
+	margin-right: 2px;
+	flex-basis: 300px;
+}
+
+.inpcontainer-detailsbox {
+	background: #F0F0F0;
+	border-radius: 20px;
+	position: absolute;
+	width: 826px;
+	height: 578px;
+	left: 310px;
+	top: 215px;
+}
+
+.inpcontainer-details {
+	position: relative;
+	left: 20px;
+}
+
+.inpcontainer-status {
+  flex-basis: 400px;
+  position: relative;
+  top: 90px;
+  left: 295px;
+}
+
+h1 {
+	position: absolute;
+	left: 320px;
+	top: 100px;
+	color: #366DFC;
+	font-weight: 600;
+	font-size: 48px;
+	letter-spacing: -0.02em;
+}
+
+h2 {
+	margin-bottom: 5px;
+	font-style: semibold;
+	font-weight: 600;
+	font-size: 28px;
+	color: black;
+}
+
+input[type=text].name {
+	all: unset;
+	outline: none;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	text-indent: 12px;
+	text-align: left;
+	color: #5A5A5A;
+	background: #E7E5E5;
+	border-radius: 35px;
+	width: 100%;
+	height: 40px;
+}
+
+input[type=text].stages {
+	all: unset;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	text-indent: 12px;
+	text-align: left;
+	color: #5A5A5A;
+	background: #E7E5E5;
+	border-radius: 35px;
+	width: 360px;
+	height: 30px;
+}
+
+input[type=text]:not(:placeholder-shown) {
+	box-shadow: 2px 6px 4px rgba(0, 0, 0, 0.1);
+	background: #FBFBFB;
+	border: 0.1px solid #5A5A5A;
+}
+
+input[type=text]:focus {
+	background: #FBFBFB;
+	border: 0.1px solid #5A5A5A;
+	box-shadow: 2px 6px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type=radio] {
+	position: relative;
+	width: 16px;
+	height: 16px;
+	background: #5A5A5A;
+	border: 4px solid #E7E5E5;
+	box-sizing: border-box;
+}
+
+label {
+	position: relative;
+	left: 4px;
+	bottom: 4px;
+	font-family: 'Work Sans';
+	font-style: semibold;
+	font-weight: 600;
+	font-size: 16px;
+	color: #5A5A5A;
+}
+
+::placeholder {
+	color: #9F9F9F;
+}
+	
+.changestatusbutton {
+	all: unset;
+	text-align: center;
+	position: relative;
+	color: white;
+	background: #2947A9;
+	border-radius: 35px;
+	height: 26px;
+	width: 200px;
+	margin-top: 6px;
+	font-family: 'Work Sans';
+	font-weight: 100;
+	font-size: 14px;
+}
+
+.changestatusbutton:hover {
+	cursor: pointer;
+}
+
+th {
+	font-size: 22px;
+	color: #2947A9;
+	padding-bottom: 5px;
+}
+
+td {
+	padding-top: 12px;
+	padding-bottom: 8px;
+	font-weight: 500;
+	font-size: 18px;
+	color: #5A5A5A;
+}
