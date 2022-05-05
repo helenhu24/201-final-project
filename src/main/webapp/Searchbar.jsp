@@ -9,6 +9,7 @@
 
 .optioncontainer {
 	margin-left: 26%;
+	white-space: nowrap;
 }
 
 .optionbutton {
@@ -43,12 +44,13 @@ input[type=text] {
 	font-weight: 500;
 	text-indent: 40px;
 	text-align: left;
-	margin-left: 34px;
+	margin-left: 1%;
 	color: #5A5A5A;
 	background: #E7E5E5;
 	border-radius: 35px;
 	width: 30%;
 	height: 40px;
+	display: inline-block;
 }
 
 input[type=text]:not(:placeholder-shown) {
@@ -65,6 +67,7 @@ input[type=text]:not(:placeholder-shown) {
 	line-height: 15px;
 	letter-spacing: -0.02em;
 	width: 20%;
+	white-space: nowrap;
 }
 
 .selectcontainer select {
@@ -78,17 +81,15 @@ input[type=text]:not(:placeholder-shown) {
 	cursor: pointer;
 	padding-right: 20px;
 }
-
 .selectcontainer::after {
     content: '\f0d7';
     font: normal normal normal 17px/1 FontAwesome;
     font-size: 16px;
     color: #C4C4C4;
-    right: 1216px;
-    top: 141px;
-    height: 34px;
     padding: 15px 0px 0px 8px;
-    position: absolute;
+    position: relative;
+    left: 190px;
+    bottom: 30px;
     pointer-events: none;
 }
 
@@ -101,9 +102,8 @@ input[type=text]:not(:placeholder-shown) {
     font-size: 16px;
     color:  #9F9F9F;
     cursor: pointer;
-    position: absolute;
-    right: 930px;
-    top: 114px;
+    position: relative;
+   left: 60px;
 }
 </style>
 </head>
@@ -112,8 +112,8 @@ input[type=text]:not(:placeholder-shown) {
   <form action="SearchDispatcher" method="post">
   <button type="submit" onClick="submit(this.form)" class="optionbutton">In Progress</button>
   <button type="submit" onClick="submit(this.form)" class="optionbutton2">All Companies</button>
+  <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
 		<input type="text" id="search" name="search" placeholder=" ">
-		<button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
   </form>
   </div>
    	<div class="selectcontainer">

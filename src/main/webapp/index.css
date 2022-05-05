@@ -9,19 +9,24 @@ body {
   display: flex;
   align-items: left;
   justify-content: left;
-
 }
 
 .inpcontainer-item {
-  flex-basis: 720px;
-  text-align: left;
+	display: flex;
+	width: 86%;
+	height: 100%;
+	text-align: left;
+	flex-wrap: wrap
 }
 
 .inpcontainer-detailsbox {
+	display: flex;
+	flex-basis: column;
 	position: relative;
-	width: 1398px;
-	height: 139px;
-	left: 238px;
+	width: 100%;
+	min-height: 140px;
+	min-width: 500px;
+	margin-left: 17%;
 	margin-bottom: 30px;
 	background: #FFFFFF;
 	box-shadow: 3px 7px 10px rgba(0, 0, 0, 0.09);
@@ -31,6 +36,8 @@ body {
 .inpcontainer-info {
 	padding-top: 24px;
 	margin-left: 38px;
+	padding-right: 1px;
+	width: 20%;
 }
 
 h1 {
@@ -66,12 +73,13 @@ h3 {
 }
 
 .statuscontainer {
-	position: absolute;
-	left: 300px;
-	top: 32px;
+	position: relative;
+	top: 20%;
+	width: 60%;
 	font-size: 16px;
 	font-weight: 400;
 	text-align: top;
+	padding-left: 40px;
 }
 
 input[type=radio] {
@@ -119,10 +127,10 @@ label {
 	all: unset;
 	background:none;
     border:none;
-    font-size: 40px;
+    font-size: 24px;
     color:  #EA0B0B;
     cursor: pointer;
     position: relative;
-    left: 820px;
-    bottom: 10px;
+    left: 97%;
+    bottom: 30%;
 }

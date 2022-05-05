@@ -15,7 +15,7 @@
 <div class='inpcontainer'>
   <div class='inpcontainer-item'>
   <div class='inpcontainer-detailsbox'>
-  <div class='inpcontainer-details'>
+  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
   <div class='inpcontainer-info'><h1>Twitter</h1><br>
   <h2>Software Engineer</h2><br>
   <h3>Date Added: 04/13/2022</h3></div>
@@ -28,9 +28,7 @@
   	<input type="radio" id="4" name="status" value="4"><label for="4">Accepted</label>
   	<input type="radio" id="5" name="status" value="5"><label for="5">Denied</label><br>
   	<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button>
-  	<button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
   </form>
-  </div>
   </div>
   </div>
   </div>
@@ -38,7 +36,7 @@
 <div class='inpcontainer'>
   <div class='inpcontainer-item'>
   <div class='inpcontainer-detailsbox'>
-  <div class='inpcontainer-details'>
+  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
   <div class='inpcontainer-info'><h1>horny people</h1><br>
   <h2>have no rights. horny people</h2><br>
   <h3>are not protected under the constitution.</h3></div>
@@ -50,9 +48,7 @@
   	<input type="radio" id="3" name="status" value="3"><label for="3">Example 3</label>
   	<input type="radio" id="4" name="status" value="4"><label for="4">Example 4</label><br>
   	<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button>
-  	<button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
   </form>
-  </div>
   </div>
   </div>
   </div>
@@ -60,7 +56,7 @@
 <div class='inpcontainer'>
   <div class='inpcontainer-item'>
   <div class='inpcontainer-detailsbox'>
-  <div class='inpcontainer-details'>
+  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
   <div class='inpcontainer-info'><h1>if you are</h1><br>
   <h2>horny i WILL find you</h2><br>
   <h3>and then you will be sorry buster</h3></div>
@@ -72,9 +68,7 @@
   	<input type="radio" id="3" name="status" value="3"><label for="3">Example 3</label>
   	<input type="radio" id="4" name="status" value="4"><label for="4">Example 4</label><br>
   	<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button>
-  	<button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
   </form>
-  </div>
   </div>
   </div>
   </div>
