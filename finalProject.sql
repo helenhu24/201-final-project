@@ -38,7 +38,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `Final_Project`.`Login` ;
 
 CREATE TABLE IF NOT EXISTS `Final_Project`.`Login` (
-  `loginID` INT NOT NULL AUTO_INCREMENT,
+  `loginID` VARCHAR(45) NOT NULL,
   `firstName` VARCHAR(45) NULL DEFAULT NULL,
   `lastName` VARCHAR(45) NULL DEFAULT NULL,
   `password` VARCHAR(45) NULL DEFAULT NULL,
@@ -54,11 +54,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 DROP TABLE IF EXISTS `Final_Project`.`bridge` ;
 
 CREATE TABLE IF NOT EXISTS `Final_Project`.`bridge` (
-  `loginID` INT NOT NULL,
+  `loginID` VARCHAR(45) NOT NULL,
   `companyID` INT NULL DEFAULT NULL,
   `progress` INT NULL,
   INDEX `companyID_idx` (`companyID` ASC) VISIBLE,
-  INDEX `loginID_idx` (`loginID` ASC) VISIBLE,
   CONSTRAINT `companyID`
     FOREIGN KEY (`companyID`)
     REFERENCES `Final_Project`.`Company` (`companyID`)

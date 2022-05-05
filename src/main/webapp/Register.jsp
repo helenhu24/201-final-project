@@ -20,7 +20,7 @@
   <div class='firstlast-item'>
    
     
-	<form id="login" action="LoginDispatcher" method="post">
+	<form id="register" action="RegisterDispatcher" method="GET">
 	<!-- <div class='line1'> -->
 	  <div class="fname">
 	    <input type="text" id="firstName" name="firstName" placeholder="First Name"><p>

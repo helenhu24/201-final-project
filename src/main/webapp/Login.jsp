@@ -16,12 +16,22 @@
     <link rel="stylesheet" href="Login.css">
 </head>
 <body>
-<c:if test="${failedlogin}"><div class = 'failedlogin'>Invalid email or password.</div></c:if>
-<div class='inpcontainer'>
+	<%String er = (String) request.getAttribute("error");
+   	 if (er != null) {
+	out.println("<div style=\"background-color: #FF7F7F; color: white; text-align: center; padding-top: 15px; padding-bottom: 15px;\">");
+	out.println(er);
+	out.println("</div>");
+	}
+	%><div class='inpcontainer'>
   <div class='inpcontainer-item'>
     <h1>Sign In</h1><p>
-	<form id="login" action="LoginDispatcher" method="post">
-	  <input type="text" id="loginemail" name="loginemail" placeholder="Email Address"><p>
+    <% 
+    String login_email = request.getParameter("loginemail");
+    if (login_email == null) login_email = "";
+
+	%>
+	<form id="login" action="LoginDispatcher" method="GET">
+	  <input type="text" id="loginemail" name="loginemail" placeholder="Email Address" value = <%=login_email %>><p>
 	  <input type="password" id="loginpass" name="loginpass" placeholder="Password" class="pw"><p>
 	  <a href="ForgotPassword.jsp" class="forgotpassword">Forgot Password</a><p>
 	  <div style="clear: both;"></div>
