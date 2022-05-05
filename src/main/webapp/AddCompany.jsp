@@ -29,7 +29,7 @@
 </div>
 </div>
 </body>
-<script type="text/javascript">
+<script>
 
 
 	document.querySelector("#delstage").style.visibility = "hidden";

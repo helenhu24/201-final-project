@@ -24,7 +24,7 @@ public class addCompany extends HttpServlet{
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //    	need url
-		String db = "jdbc:mysql://localhost:3306/PA2";
+		String db = "jdbc:mysql://somodi-paul-mysql-1.cm4toibfd749.us-east-1.rds.amazonaws.com:3306/Final_Project";
 		
 		Enumeration<String> parameterNames = request.getParameterNames();
 		String name = request.getParameter("companyname");
