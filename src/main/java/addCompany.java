@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+//gay
 
 @WebServlet("/addCompany")
 public class addCompany extends HttpServlet{
@@ -44,7 +44,6 @@ public class addCompany extends HttpServlet{
 			
 		} catch (ClassNotFoundException e) {} catch (SQLException e) {}
 		Enumeration<String> parameterNames = request.getParameterNames();
-
 		while(parameterNames.hasMoreElements()) {
 			String stepnum = parameterNames.nextElement();
 //			only gets the number from the names 
