@@ -1,0 +1,120 @@
+body {
+    font-size: 14px;
+    font-family: 'Work Sans', sans-serif;
+    background: #FBFBFB;
+    margin: 0% 0%;
+}
+
+.inpcontainer {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  margin-left: 32%;
+  margin-top: 4%;
+}
+
+.inpcontainer-item {
+  flex-basis: 720px;
+  text-align: left;
+}
+
+h1 {
+	all: unset;
+	display: inline-block;
+	font-style: semibold;
+	font-weight: 900;
+	font-size: 28px;
+	color: #366DFC;
+	float: left;
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+
+h2 {
+	all: unset;
+	font-style: semibold;
+	font-weight: 600;
+	font-size: 18px;
+	color: black;
+}
+
+input[type=text].name {
+	all: unset;
+	outline: none;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	text-indent: 12px;
+	text-align: left;
+	color: #5A5A5A;
+	background: #E7E5E5;
+	border-radius: 35px;
+	width: 100%;
+	height: 40px;
+}
+
+input[type=text].stages {
+	all: unset;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	text-indent: 12px;
+	text-align: left;
+	color: #5A5A5A;
+	background: #E7E5E5;
+	border-radius: 35px;
+	width: 360px;
+	height: 30px;
+}
+
+input[type=text]:not(:placeholder-shown) {
+	box-shadow: 2px 6px 4px rgba(0, 0, 0, 0.1);
+	background: #FBFBFB;
+	border: 0.1px solid #5A5A5A;
+}
+
+input[type=text]:focus {
+	background: #FBFBFB;
+	border: 0.1px solid #5A5A5A;
+	box-shadow: 2px 6px 4px rgba(0, 0, 0, 0.1);
+}
+
+::placeholder {
+	color: #9F9F9F;
+}
+	
+.addstagebutton {
+	all: unset;
+	background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    color:  #5A5A5A;
+    cursor: pointer;
+}
+
+.addcompanybutton {
+	all: unset;
+	text-align: center;
+	position: relative;
+	right: 20px;
+	color: white;
+	background: #2947A9;
+	border-radius: 35px;
+	height: 40px;
+	width: 400px;
+	margin-top: 6px;
+}
+
+.delbutton {
+	all: unset;
+	background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    color:  #EA0B0B;
+    cursor: pointer;
+    position: relative;
+    left: 334px;
+    bottom: 98px;
+}
