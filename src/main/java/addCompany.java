@@ -1,3 +1,5 @@
+package main.java;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,13 +27,9 @@ public class addCompany extends HttpServlet{
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //    	need url
-<<<<<<< HEAD
 		String db = "jdbc:mysql://somodi-paul-mysql-1.cm4toibfd749.us-east-1.rds.amazonaws.com:3306/Final_Project";
-=======
-		String db = "jdbc:mysql://localhost:3306/PA2";
 		
 		Enumeration<String> parameterNames = request.getParameterNames();
->>>>>>> parent of a10d010... Added Dispatchers
 		String name = request.getParameter("companyname");
 		int coID = 0;
 		try {
@@ -49,7 +47,6 @@ public class addCompany extends HttpServlet{
 			coID = res.getInt("companyID");
 			
 		} catch (ClassNotFoundException e) {} catch (SQLException e) {}
-		Enumeration<String> parameterNames = request.getParameterNames();
 		while(parameterNames.hasMoreElements()) {
 			String stepnum = parameterNames.nextElement();
 //			only gets the number from the names 
