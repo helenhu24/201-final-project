@@ -70,7 +70,7 @@ public class addCompany extends HttpServlet{
 			}
 			catch(NumberFormatException e) {} catch (ClassNotFoundException e) {} catch (SQLException e) {}
 		}
-
+		response.sendRedirect("AllCompanies.jsp");
 
     }
     
