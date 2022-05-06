@@ -12,11 +12,17 @@
     <link rel="stylesheet" href="AllCompanies.css">
 </head>
 <body>
+
+  <%
+  String keyWord = (String)request.getAttribute("search");
+  String sort = (String)request.getAttribute("sort");
+  %>
+  
 <%@ include file="header.jsp" %><br>
 <div class='optioncontainer'>
   <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
   <a href="AllCompanies.jsp"><button class="optionbutton2">All Companies</button></a>
-  <form action="SearchDispatcher" method="post">
+  <form action="SearchAll" method="post">
   <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
 		<input type="text" id="search" name="search" placeholder=" ">
   </form>

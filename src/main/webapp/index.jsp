@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+
+  <%
+  String keyWord = (String)request.getAttribute("search");
+  String sort = (String)request.getAttribute("sort");
+  %>
+  
 <%@ include file="header.jsp" %><br>
 <%@ include file="Searchbar.jsp" %><br>
 <div class='inpcontainer'>
