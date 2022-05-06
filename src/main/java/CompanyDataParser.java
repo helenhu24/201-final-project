@@ -1,4 +1,3 @@
-package main.java;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -55,8 +54,8 @@ public class CompanyDataParser {
 					}
 					else {
 						//bus = new Company();
-						bus.setName(rs.getString("restaurant_name"));
-						bus.setId(rs.getString("restaurant_id"));
+						bus.setName(rs.getString("companyName"));
+						bus.setId(rs.getString("companyID"));
 						System.out.println("name set in rdp");
 					
 					}
@@ -66,7 +65,8 @@ public class CompanyDataParser {
 					System.out.println("SQLException: " + ex.getMessage() + " in getCompanyName");
 			}
 		
-		sql = "{CALL GetCompanyDetails(?)}";
+//MODIFY THIS TO GET NUMBER OF APPS AT EACH STAGE	
+		sql = "{CALL GetNumApps(?)}"; 
 		try(Connection conn = DriverManager.getConnection(db,user,pwd);
 					CallableStatement stmt4 = conn.prepareCall(sql);){
 					stmt4.setString(1, id);
@@ -77,70 +77,15 @@ public class CompanyDataParser {
 						}
 						else {
 				
-							bus.setImageUrl(rs4.getString("image_url"));
-							List<String> disp = new ArrayList<String>();
-							String address = rs4.getString("address");
-							System.out.println("address:  " + address);
-							//disp.add(rs.getString("address"));
-							disp.add(address);
-							Location loc = new Location();
-							loc.setDisplayAddress(disp);
-							bus.setLocation(loc);
-							bus.setPhone(rs4.getString("phone_no"));
-							bus.setPrice(rs4.getString("estimated_price"));
-							bus.setUrl(rs4.getString("yelp_url"));
-							
+							bus.setNumApps(rs4.getInt("numApps"));	
 						
 						}
 						
 						//return bus;
 				} catch(SQLException ex) {
-						System.out.println("SQLException: " + ex.getMessage() + " in getCompanyDetails");
+						System.out.println("SQLException: " + ex.getMessage() + " in getNumApps");
 				}
 		
-		sql = "{CALL GetCompanyCategory(?)}";
-		try(Connection conn = DriverManager.getConnection(db,user,pwd);
-					CallableStatement stmt5 = conn.prepareCall(sql);){
-					stmt5.setString(1, id);
-					List<Category> cats = new ArrayList<Category>();
-						
-						ResultSet rs5 = stmt5.executeQuery();
-						if(!rs5.next()) {
-							bus = null;
-						}
-						else {
-							while(rs5.next()) {
-								Category cat = new Category();
-								cat.setTitle(rs5.getString("category_name"));
-								cats.add(cat);
-								bus.setCategories(cats);
-					
-							}
-						}
-						
-						//return bus;
-				} catch(SQLException ex) {
-						System.out.println("SQLException: " + ex.getMessage() + " in getCompanyCategory");
-				}
-		
-		sql = "{CALL GetCompanyReview(?)}";
-		try(Connection conn = DriverManager.getConnection(db,user,pwd);
-					CallableStatement stmt6 = conn.prepareCall(sql);){
-					stmt6.setString(1, id);
-						
-						ResultSet rs6 = stmt6.executeQuery();
-						if(!rs6.next()) {
-							bus = null;
-						}
-						else {
-							bus.setReviewCount(rs6.getInt("review_count"));
-							bus.setRating(rs6.getFloat("rating"));
-						}
-						
-						//return bus;
-				} catch(SQLException ex) {
-						System.out.println("SQLException: " + ex.getMessage() + " in getCompanyReview");
-				}
 		
 		
         
@@ -157,7 +102,10 @@ public class CompanyDataParser {
      * @param searchType search in category or name
      * @return the list of Company matching the criteria
      */
-    public static ArrayList<Company> getCompanies(String keyWord, String sort, String searchType) {
+    public static ArrayList<Company> getCompanies(String keyWord, String sort) {
+    	
+  //MODIFY TO ACCOUNT FOR COMPANIES IN PROGRESS
+    	
         ArrayList<Company> Companies = new ArrayList<Company>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -168,35 +116,19 @@ public class CompanyDataParser {
         
         System.out.println(keyWord);
         System.out.println(sort);
-        System.out.println(searchType);
         
-		String db ="jdbc:mysql://localhost:3306/CS201PA2_Users";
+		String db =Constant.URL;
 		String user =  Constant.DBUserName;
 		String pwd = Constant.DBPassword;
 		String sql = "";
 		
-		if(sort.equals("Review_Count")) {
-			if(searchType.equals("name")) {
-				sql= "{CALL nameByReviewCount(?)}";
-			} else if(searchType.equals("category")) {
-				sql= "{CALL categoryByReviewCount(?)}";
-			}
+		if(sort.equals("dateadded")) {
+			sql = "{CALL dateadded(?)}";
 		}
-		else if(sort.equals("Rating")) {
-			if(searchType.equals("name")) {
-				sql= "{CALL nameByRating(?)}";
-			} else if(searchType.equals("category")) {
-				sql= "{CALL categoryByRating(?)}";
-			}
+		else if(sort.equals("alphabetical")) {
+			sql = "{CALL alphabetical(?)}";
 		}
-		else if(sort.equals("Price")) {
-			if(searchType.equals("name")) {
-				sql= "{CALL nameByPrice(?)}";
-			} else if(searchType.equals("category")) {
-				sql= "{CALL categoryByPrice(?)}";
-			}
-			
-		}else {
+		else {
 			System.out.println("else in getCompanies");
 		}
 		

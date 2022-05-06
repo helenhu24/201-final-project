@@ -43,6 +43,7 @@ public class SearchInProgress extends HttpServlet {
     	String keyWord = request.getParameter("search");
         String sortBy = request.getParameter("sort");
         
+        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy);
         request.setAttribute("key_word", keyWord);
         request.setAttribute("sort", sortBy);
         request.getRequestDispatcher("/index.jsp").forward(request, response);

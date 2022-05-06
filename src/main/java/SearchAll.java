@@ -43,6 +43,7 @@ public class SearchAll extends HttpServlet {
     	String keyWord = request.getParameter("search");
         String sortBy = request.getParameter("sort");
         
+        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy);
         request.setAttribute("search", keyWord);
         request.setAttribute("sort", sortBy);
         request.getRequestDispatcher("/AllCompanies.jsp").forward(request, response);
