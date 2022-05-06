@@ -105,13 +105,24 @@ input[type=text]:not(:placeholder-shown) {
     position: relative;
    left: 60px;
 }
+
+form, table {
+     display:inline;
+     margin:0px;
+     padding:0px;
+}
+
+a {
+	all: unset;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
 <div class='optioncontainer'>
+  <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
+  <a href="AllCompanies.jsp"><button class="optionbutton2">All Companies</button></a>
   <form action="SearchDispatcher" method="post">
-  <button type="submit" onClick="submit(this.form)" class="optionbutton">In Progress</button>
-  <button type="submit" onClick="submit(this.form)" class="optionbutton2">All Companies</button>
   <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
 		<input type="text" id="search" name="search" placeholder=" ">
   </form>
