@@ -34,42 +34,44 @@ public class addCompany extends HttpServlet{
 		int coID = 0;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(db,"user", "pass");
+			Connection conn = DriverManager.getConnection(db, "admin", "ILoveDunkin!");
 //			how to store which step person is at? name,numapps
 			String sqlmain = "Insert into Company(companyName,numApps) values (?,0);";
 			PreparedStatement prep = conn.prepareStatement(sqlmain);
 			prep.setString(1, name);
 			prep.executeUpdate();
-			String sql = "Select companyID from Company where companyName like '?';";
+			String sql = "Select companyID from Company where companyName = '?'";
+			System.out.println("1");
 			PreparedStatement prep2 = conn.prepareStatement(sql);
+			System.out.println("2");
 			prep2.setString(1, name);
+			System.out.println("3");
 			ResultSet res = prep2.executeQuery();
+			System.out.println("4");
 			res.next();
 			coID = res.getInt("companyID");
 			
-		} catch (ClassNotFoundException e) {} catch (SQLException e) {}
+		} catch (ClassNotFoundException e) {} catch (SQLException e) {
+			System.out.println("oops");
+		}
 		while(parameterNames.hasMoreElements()) {
 			String stepnum = parameterNames.nextElement();
 //			only gets the number from the names 
 			try {
 //				parse data
 				int num = Integer.parseInt(stepnum);
-				System.out.println(num);
 				String stage = request.getParameter(stepnum);
-				System.out.println(stage);
 				
 //				sql connection need credentials <-
 	    		Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection conn = DriverManager.getConnection(db,"user", "pass");
+				Connection conn = DriverManager.getConnection(db,"admin", "ILoveDunkin!");
 //				insert company name, step number and correlating step with 0 people in each step				
-				String sql = "Insert into stages values(?,?,?,0);";
+				String sql = "INSERT INTO stages (companyID, stepnum, stage, people) VALUES (?,?,?,0)";
 				PreparedStatement prep = conn.prepareStatement(sql);
 				prep.setInt(1, coID);
 				prep.setInt(2, num);
 				prep.setString(3, stage);
 				prep.executeUpdate();
-
-				
 			}
 			catch(NumberFormatException e) {} catch (ClassNotFoundException e) {} catch (SQLException e) {}
 		}
