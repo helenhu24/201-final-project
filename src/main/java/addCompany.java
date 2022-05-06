@@ -40,19 +40,14 @@ public class addCompany extends HttpServlet{
 			PreparedStatement prep = conn.prepareStatement(sqlmain);
 			prep.setString(1, name);
 			prep.executeUpdate();
-			String sql = "Select companyID from Company where companyName = '?'";
-			System.out.println("1");
+			String sql = "Select companyID from Company where companyName = ?";
 			PreparedStatement prep2 = conn.prepareStatement(sql);
-			System.out.println("2");
 			prep2.setString(1, name);
-			System.out.println("3");
 			ResultSet res = prep2.executeQuery();
-			System.out.println("4");
 			res.next();
 			coID = res.getInt("companyID");
 			
 		} catch (ClassNotFoundException e) {} catch (SQLException e) {
-			System.out.println("oops");
 		}
 		while(parameterNames.hasMoreElements()) {
 			String stepnum = parameterNames.nextElement();
