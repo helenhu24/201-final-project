@@ -1,3 +1,4 @@
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,15 @@
   <%
   String keyWord = (String)request.getAttribute("search");
   String sort = (String)request.getAttribute("sort");
+  ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sort,"inProgress");
   %>
   
 <%@ include file="header.jsp" %><br>
+<%if(loggedIn){ %>
+	<input type="hidden" name="loggedIn" value="true">
+<%} else{ %>
+	<input type="hidden" name="loggedIn" value="false"> 
+<%} %>
 <%@ include file="Searchbar.jsp" %><br>
 <div class='inpcontainer'>
   <div class='inpcontainer-item'>

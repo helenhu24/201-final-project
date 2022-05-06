@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +17,19 @@
   <%
   String keyWord = (String)request.getAttribute("search");
   String sort = (String)request.getAttribute("sort");
+  ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sort,"All");
   %>
   
 <%@ include file="header.jsp" %><br>
+<%if(loggedIn){ %>
+	<input type="hidden" name="loggedIn" value="true">
+<%} else{ %>
+	<input type="hidden" name="loggedIn" value="false"> 
+<%} %>
 <div class='optioncontainer'>
   <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
   <a href="AllCompanies.jsp"><button class="optionbutton2">All Companies</button></a>
-  <form action="SearchAll" method="post">
+  <form action="SearchDispatcher" method="post">
   <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
 		<input type="text" id="search" name="search" placeholder=" ">
   </form>

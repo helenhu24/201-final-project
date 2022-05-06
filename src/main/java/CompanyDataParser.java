@@ -102,7 +102,7 @@ public class CompanyDataParser {
      * @param searchType search in category or name
      * @return the list of Company matching the criteria
      */
-    public static ArrayList<Company> getCompanies(String keyWord, String sort) {
+    public static ArrayList<Company> getCompanies(String keyWord, String sort, String page) {
     	
   //MODIFY TO ACCOUNT FOR COMPANIES IN PROGRESS
     	
@@ -142,7 +142,7 @@ public class CompanyDataParser {
 					
 					ResultSet rs = stmt.executeQuery();
 					while(rs.next()) {
-						Companies.add(getCompany(rs.getString("restaurant_id")));
+						Companies.add(getCompany(rs.getString("companyID")));
 					}
 			} catch(SQLException ex) {
 					System.out.println("SQLException: " + ex.getMessage() + " in getCompanies");
