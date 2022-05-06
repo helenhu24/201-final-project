@@ -122,7 +122,7 @@ a {
 <div class='optioncontainer'>
   <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
   <a href="AllCompanies.jsp"><button class="optionbutton2">All Companies</button></a>
-  <form action="SearchDispatcher" method="post">
+  <form action="SearchInProgress" method="post">
   <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
 		<input type="text" id="search" name="search" placeholder=" ">
   </form>
