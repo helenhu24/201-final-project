@@ -24,8 +24,11 @@ public class LogoutDispatcher extends HttpServlet {
     	// I referenced https://www.javatpoint.com/cookies-in-servlet for how to utilize cookies
     	response.setContentType("text/html");
     	Cookie c = new Cookie("userName", "test");
+    	Cookie c2 = new Cookie("loginID", "yaya");
     	c.setMaxAge(0);
+    	c2.setMaxAge(0);
     	response.addCookie(c);
+    	response.addCookie(c2);
     	response.sendRedirect("index.jsp");
 
     }

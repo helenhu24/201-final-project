@@ -48,7 +48,12 @@ public class LoginDispatcher extends HttpServlet {
                     // set cookie: referenced https://www.javatpoint.com/cookies-in-servlet
                     Cookie cookie = new Cookie("userName", firstname + "#" + lastname);
                     cookie.setMaxAge(60*60);
+                    
+                    //LoginID cookie
+                    Cookie loginCookie = new Cookie("loginID", request.getParameter("loginemail").toString());
+                    loginCookie.setMaxAge(60*60);
                     response.addCookie(cookie);
+                    response.addCookie(loginCookie);
                     response.sendRedirect("index.jsp");
                 }
                 else { // otherwise, incorrect password, return error...

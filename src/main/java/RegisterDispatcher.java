@@ -67,7 +67,10 @@ public class RegisterDispatcher extends HttpServlet {
 	        		// add cookie for user that is now logged in and registered: referenced https://www.javatpoint.com/cookies-in-servlet
 	        		Cookie cookie = new Cookie("userName", firstname + "#" + lastname);
 	        		cookie.setMaxAge(60*60);
-	        		response.addCookie(cookie);
+	        		Cookie loginCookie = new Cookie("loginID", request.getParameter("loginemail").toString());
+                    loginCookie.setMaxAge(60*60);
+                    response.addCookie(cookie);
+                    response.addCookie(loginCookie);
 	        		response.sendRedirect("index.jsp");
         		}
         		else { // password didn't match conf_pass OR no password entered, return error...
