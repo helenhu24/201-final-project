@@ -43,7 +43,6 @@ public class UserAdd extends HttpServlet{
 	    		String email = c.getValue();
 //	    		need to have all companies have input form with company i
 	    		String coID = request.getParameter("companyID");
-	    		System.out.println(coID);
 	    		int num = Integer.parseInt(coID);
 	    		
 	    		String db =Constant.URL;
