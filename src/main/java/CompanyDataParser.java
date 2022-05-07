@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.*;
 import javax.servlet.annotation.WebServlet;
 
 /**
@@ -23,12 +24,46 @@ import javax.servlet.annotation.WebServlet;
 public class CompanyDataParser {
     private static Boolean ready = false;
 
-    /**
-     * Initializes the DB with json data 
-     *
-     * @param responseString the Yelp json string
-     */
+  public static ArrayList<String> stage = new ArrayList();
+  public static ArrayList<Integer> people = new ArrayList();
+  /**
+   * Initializes the DB with json data 
+   *
+   * @param responseString the Yelp json string
+   * @return 
+   */
+  public static void setStages(String id){
+  	Map<Integer,String> m = new TreeMap();
+      try {
+          Class.forName("com.mysql.jdbc.Driver");
   
+      } catch (ClassNotFoundException e) {
+      	System.out.print("ClassNotFound in getStages");
+          e.printStackTrace();
+      }
+      
+  	String db = Constant.URL;
+  	String user =  Constant.DBUserName;
+  	String pwd = Constant.DBPassword;
+  	String sql = "Select * from stages where companyID = ? order by stepnum";
+//  	String sql2 = "Select"
+  
+  	try(Connection conn = DriverManager.getConnection(db,user,pwd);){
+  		PreparedStatement st = conn.prepareStatement(sql);
+  		st.setString(1,id);
+  		ResultSet rs = st.executeQuery();
+  		while(rs.next()) {
+  			stage.add(rs.getString("stage"));
+  			people.add(rs.getInt("people"));
+  		}
+  		
+  	} catch (SQLException e) {
+  		// TODO Auto-generated catch block
+  		e.printStackTrace();
+  	}
+  }
+
+    
     public static Company getCompany(String id) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -57,6 +92,7 @@ public class CompanyDataParser {
 						//bus = new Company();
 						bus.setName(rs.getString("companyName"));
 						bus.setId(rs.getString("companyID"));
+						System.out.println("name set in rdp");
 					
 					}
 					
@@ -90,6 +126,7 @@ public class CompanyDataParser {
 		
         
         //TODO return Company based on id
+		System.out.println("Company returned");
 		System.out.println(bus.getName());
         return bus;
         
@@ -121,27 +158,14 @@ public class CompanyDataParser {
 		String pwd = Constant.DBPassword;
 		String sql = "{CALL GetCompanyName(?)}";
 		
-		if(page.equals("All")) {
-			if(sort.equals("numApps")) {
-				sql = "{CALL AllByNumApps(?)}";
-			}
-			else if(sort.equals("alphabetical")) {
-				sql = "{CALL AllByAlphabetical(?)}";
-			}
-			else {
-				sql = "{CALL AllByNumApps(?)}";
-			}
+		if(sort.equals("dateadded")) {
+			sql = "{CALL dateadded(?)}";
 		}
-		else if(page.equals("inProgress")) {
-			if(sort.equals("numApps")) {
-				sql = "{CALL InPByNumApps(?)}";
-			}
-			else if(sort.equals("alphabetical")) {
-				sql = "{CALL InPByAlphabetical(?)}";
-			}
-			else {
-				sql = "{CALL InPByNumApps(?)}";
-			}
+		else if(sort.equals("alphabetical")) {
+			sql = "{CALL alphabetical(?)}";
+		}
+		else {
+			System.out.println("else in getCompanies");
 		}
 		
 		try(Connection conn = DriverManager.getConnection(db,user,pwd);
