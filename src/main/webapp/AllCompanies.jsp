@@ -1,6 +1,8 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
+<%@page import="main.java.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +22,12 @@
   if(sort ==null){
 	  sort="";
   }
- // ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sort,"All");
+   
+  ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sort,"All");
+  request.setAttribute("arr", arr);
+  
+  
+  
   %>
   
 <%@ include file="header.jsp" %><br>
@@ -47,41 +54,20 @@
 		</select>
    	</div>
    	<br>
-<div class='inpcontainer'>
-  <div class='inpcontainer-item'>
-  <div class='inpcontainer-detailsbox'>
-  <div class='inpcontainer-info'><h1>Twitter</h1><br>
-  <h3>Is in your active applications.</h3></div>
-  <div class='statuscontainer'>
-  <br>
-  <button type="submit" onClick="submit(this.form)" class="removebutton">Remove</button>
-  </div>
-  </div>
-  </div>
-</div>
-<div class='inpcontainer'>
-  <div class='inpcontainer-item'>
-  <div class='inpcontainer-detailsbox'>
-  <div class='inpcontainer-info'><h1>Other company</h1><br>
-  <h3>Is in your active applications.</h3></div>
-  <div class='statuscontainer'>
-  <br>
-  <button type="submit" onClick="submit(this.form)" class="removebutton">Remove</button>
-  </div>
-  </div>
-  </div>
-</div>
-<div class='inpcontainer'>
-  <div class='inpcontainer-item'>
-  <div class='inpcontainer-detailsbox'>
-  <div class='inpcontainer-info'><h1>Other company</h1><br>
-  <h3>Is not in your active applications.</h3></div>
-  <div class='statuscontainer'>
-  <br>
-  <button type="submit" onClick="submit(this.form)" class="addbutton">Add</button>
-  </div>
-  </div>
-  </div>
-</div>
+
+  	<c:forEach items = "${requestScope.arr}" var = "company">
+  		<div class='inpcontainer'>
+	  	<div class='inpcontainer-item'>
+	  	<div class='inpcontainer-detailsbox'>
+	  	<div class='inpcontainer-info'><h1><c:out value = "${company.getName()}"/></h1><br>
+	  		<h3>Is in your active applications.</h3>
+  		<div class='statuscontainer'>
+  		<button type="submit" onClick="submit(this.form)" class="removebutton">Remove</button>
+	  	</div>
+	  	</div>
+	  	</div>
+	  	</div>
+	  	</div>
+  	</c:forEach>
 </body>
 </html>
