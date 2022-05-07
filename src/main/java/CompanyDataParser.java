@@ -145,11 +145,7 @@ public class CompanyDataParser {
         } catch (ClassNotFoundException e) {
         	System.out.print("ClassNotFound in getCompanies");
             e.printStackTrace();
-        }
-        
-        System.out.println(keyWord);
-        System.out.println(sort);
-        
+        }        
 		String db =Constant.URL;
 		String user =  Constant.DBUserName;
 		String pwd = Constant.DBPassword;
