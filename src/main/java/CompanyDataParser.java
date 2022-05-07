@@ -24,8 +24,8 @@ import javax.servlet.annotation.WebServlet;
 public class CompanyDataParser {
     private static Boolean ready = false;
 
-  public static ArrayList<String> stage = new ArrayList();
-  public static ArrayList<Integer> people = new ArrayList();
+  public static ArrayList<String> stage = new ArrayList<String>();
+  public static ArrayList<Integer> people = new ArrayList<Integer>();
   /**
    * Initializes the DB with json data 
    *
@@ -33,7 +33,7 @@ public class CompanyDataParser {
    * @return 
    */
   public static void setStages(String id){
-  	Map<Integer,String> m = new TreeMap();
+  	Map<Integer,String> m = new TreeMap<Integer, String>();
       try {
           Class.forName("com.mysql.jdbc.Driver");
   
@@ -92,7 +92,6 @@ public class CompanyDataParser {
 						//bus = new Company();
 						bus.setName(rs.getString("companyName"));
 						bus.setId(rs.getString("companyID"));
-						System.out.println("name set in rdp");
 					
 					}
 					
@@ -126,8 +125,6 @@ public class CompanyDataParser {
 		
         
         //TODO return Company based on id
-		System.out.println("Company returned");
-		System.out.println(bus.getName());
         return bus;
         
     }
@@ -156,29 +153,30 @@ public class CompanyDataParser {
 		String db =Constant.URL;
 		String user =  Constant.DBUserName;
 		String pwd = Constant.DBPassword;
-		String sql = "{CALL GetCompanyName(?)}";
+		String sql = "SELECT * from Company";
 		
 		if(sort.equals("dateadded")) {
 			sql = "{CALL dateadded(?)}";
 		}
 		else if(sort.equals("alphabetical")) {
-			sql = "{CALL alphabetical(?)}";
+			sql += " ORDER BY companyName";
 		}
 		else {
 			System.out.println("else in getCompanies");
 		}
 		
 		try(Connection conn = DriverManager.getConnection(db,user,pwd);
-				CallableStatement stmt = conn.prepareCall(sql);){
+				PreparedStatement stmt = conn.prepareStatement(sql);){
 					if(keyWord==null) {
 						System.out.println("keyWord null");
 					}
-					System.out.println("keyWord: "+ keyWord);
-					stmt.setString(1, keyWord);
+					else if (keyWord.compareTo("") != 0) {
+						sql += " WHERE companyName LIKE %" + keyWord + "%";
+					}
 					
 					ResultSet rs = stmt.executeQuery();
 					while(rs.next()) {
-						Companies.add(getCompany(rs.getString("companyID")));
+						Companies.add(new Company(rs.getString("companyID"), rs.getString("companyName"), rs.getInt("numApps")));
 					}
 			} catch(SQLException ex) {
 					System.out.println("SQLException: " + ex.getMessage() + " in getCompanies");
