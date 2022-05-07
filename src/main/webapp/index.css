@@ -134,3 +134,7 @@ label {
     left: 97%;
     bottom: 30%;
 }
+
+form {
+	display: inline;
+}

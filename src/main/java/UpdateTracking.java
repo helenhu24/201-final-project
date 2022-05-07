@@ -32,14 +32,19 @@ public class UpdateTracking extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	System.out.println(request.getParameter("companyID"));
         // Get loginID
         String loginID = "";
 	    for (Cookie c : request.getCookies()){
 	    	if (c.getName().compareTo("loginID") == 0) {
 	    		loginID = c.getValue();
-	    		System.out.println("loginID is " + loginID);
 	    	}
 	    }
+	    String id = request.getParameter("companyID");
+	    String stage = request.getParameter("status");
+	    System.out.println("CompanyID: " + id);
+	    System.out.println("StageID: " + stage);
+	    System.out.println("LoginID: " + loginID);
     }
 
     /**
