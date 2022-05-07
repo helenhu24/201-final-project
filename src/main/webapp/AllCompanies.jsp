@@ -59,7 +59,7 @@
 	  	<div class='inpcontainer-item'>
 	  	<div class='inpcontainer-detailsbox'>
 	  	<div class='inpcontainer-info'>
-	  	<form action="UpdateTracking" method="post">
+	  	<form action="UserAdd" method="post">
 	  	<h1><c:out value = "${company.getName()}"/></h1><br>
 	  	<input type="hidden" name = "companyID" value="${company.getId()}">
 	  		<h3>Is in your active applications.</h3>
