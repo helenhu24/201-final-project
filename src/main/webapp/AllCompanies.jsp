@@ -19,12 +19,10 @@
   String keyWord = (String)request.getAttribute("search");
   String sort = (String)request.getAttribute("sort");
   if(sort ==null){
-	  sort="";
+	  sort="numApps";
   }
    
   Object arr = request.getAttribute("arr");
-  
-  
   
   %>
   
@@ -48,7 +46,7 @@
    	<div class="selectcontainer">
    	<p>Sorting By: 
 		<select name="sort" id="sort">
-		  <option value="dateadded">Date Added (Latest)</option>
+		  <option value="numApps">Number of Applications</option>
 		  <option value="alphabetical">Name A-Z</option>
 		</select>
    	</div>

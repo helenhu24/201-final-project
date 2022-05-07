@@ -132,7 +132,7 @@ a {
    	<div class="selectcontainer">
    	<p>Sorting By: 
 		<select name="sort" id="sort">
-		  <option value="dateadded">Date Added (Latest)</option>
+		  <option value="numApps">Number of Applications</option>
 		  <option value="alphabetical">Name A-Z</option>
 		</select>
    	</div>
