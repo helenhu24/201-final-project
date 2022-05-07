@@ -57,7 +57,6 @@ public class CompanyDataParser {
 						//bus = new Company();
 						bus.setName(rs.getString("companyName"));
 						bus.setId(rs.getString("companyID"));
-						System.out.println("name set in rdp");
 					
 					}
 					
@@ -91,7 +90,6 @@ public class CompanyDataParser {
 		
         
         //TODO return Company based on id
-		System.out.println("Company returned");
 		System.out.println(bus.getName());
         return bus;
         
