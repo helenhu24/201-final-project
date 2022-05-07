@@ -29,8 +29,16 @@
 <%} else{ %>
 	<input type="hidden" name="loggedIn" value="false"> 
 <%} %>
-<%@ include file="Searchbar.jsp" %><br>
 
+<%@ include file="Searchbar.jsp" %><br>
+<%
+	String id = request.getParameter("");
+	CompanyDataParser co = new CompanyDataParser();
+	Company comp = co.getCompany(id);
+	co.setStages(id);
+	ArrayList<String> stage = co.stage;
+	ArrayList<Integer> people = co.people;
+%>
 <c:forEach items = "${requestScope.arr}" var = "company">
 	<div class='inpcontainer'>
 	  <div class='inpcontainer-item'>
@@ -40,15 +48,13 @@
 	  	<input type="hidden" name = "companyID" value="${company.getId()}">
 	  <h2>Software Engineer</h2><br>
 	  <div class='statuscontainer'>
-	  <form action="changeStatus" method="post">
-	  	Status:
-	  	<input type="radio" id="1" name="status" value="1" checked><label for="1">Submitted</label>
-	  	<input type="radio" id="2" name="status" value="2"><label for="2">Interview I Completed</label>
-	  	<input type="radio" id="3" name="status" value="3"><label for="3">Interview II Completed</label>
-	  	<input type="radio" id="4" name="status" value="4"><label for="4">Accepted</label>
-	  	<input type="radio" id="5" name="status" value="5"><label for="5">Denied</label><br>
-	  	<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button>
-	  </form>
+	  <h2>Your Status:</h2><br>
+		<form id="changeStatus" action="changeStatus" method="post">
+		  <% for(int i =0; i<people.size();i++){%>
+				<input type="radio" id="stage1" name="status" value='<%=i%>'><label for="stage1"><%=stage.get(i)%></label><p>
+		  <%} %>
+		<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
+		</form>
 	  </div>
 	  </div>
 	  </div>
