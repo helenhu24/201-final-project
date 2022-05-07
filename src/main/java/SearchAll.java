@@ -49,7 +49,7 @@ public class SearchAll extends HttpServlet {
         if (sortBy == null) {
         	sortBy = "alphabetical";
         }
-        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy, "hi");
+        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy, "All");
         request.setAttribute("search", keyWord);
         request.setAttribute("sort", sortBy);
         request.getRequestDispatcher("/AllCompanies.jsp").forward(request, response);

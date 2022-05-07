@@ -121,14 +121,27 @@ public class CompanyDataParser {
 		String pwd = Constant.DBPassword;
 		String sql = "{CALL GetCompanyName(?)}";
 		
-		if(sort.equals("dateadded")) {
-			sql = "{CALL dateadded(?)}";
+		if(page.equals("All")) {
+			if(sort.equals("numApps")) {
+				sql = "{CALL AllByNumApps(?)}";
+			}
+			else if(sort.equals("alphabetical")) {
+				sql = "{CALL AllByAlphabetical(?)}";
+			}
+			else {
+				System.out.println("else in getCompanies");
+			}
 		}
-		else if(sort.equals("alphabetical")) {
-			sql = "{CALL alphabetical(?)}";
-		}
-		else {
-			System.out.println("else in getCompanies");
+		else if(page.equals("inProgress")) {
+			if(sort.equals("numApps")) {
+				sql = "{CALL InPByNumApps(?)}";
+			}
+			else if(sort.equals("alphabetical")) {
+				sql = "{CALL InPByAlphabetical(?)}";
+			}
+			else {
+				System.out.println("else in getCompanies");
+			}
 		}
 		
 		try(Connection conn = DriverManager.getConnection(db,user,pwd);
