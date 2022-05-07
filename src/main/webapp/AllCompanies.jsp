@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.*"%>
+<%@page import="java.util.*,main.java.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +17,9 @@
   <%
   String keyWord = (String)request.getAttribute("search");
   String sort = (String)request.getAttribute("sort");
+  if(sort ==null){
+	  sort="";
+  }
   ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sort,"All");
   %>
   
