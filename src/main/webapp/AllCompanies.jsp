@@ -34,6 +34,7 @@
 <%} else{ %>
 	<input type="hidden" name="loggedIn" value="false"> 
 <%} %>
+
 <div class='optioncontainer'>
   <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
   <form action="SearchAll" method="post">
@@ -57,11 +58,14 @@
   		<div class='inpcontainer'>
 	  	<div class='inpcontainer-item'>
 	  	<div class='inpcontainer-detailsbox'>
-	  	<div class='inpcontainer-info'><h1><c:out value = "${company.getName()}"/></h1><br>
+	  	<div class='inpcontainer-info'>
+	  	<form action="UpdateTracking" method="post">
+	  	<h1 id="name"><c:out value = "${company.getName()}"/></h1><br>
 	  		<h3>Is in your active applications.</h3>
   		<div class='statuscontainer'>
-  		<button type="submit" onClick="submit(this.form)" class="removebutton">Remove</button>
+  		<button type="submit" onClick="submit(this.form)" class="addbutton">Add</button>
 	  	</div>
+	  	</form>
 	  	</div>
 	  	</div>
 	  	</div>
