@@ -29,7 +29,7 @@ import java.util.Scanner;
  * Servlet implementation class UserAdd
  */
 @WebServlet("/UserAdd")
-public class UserAdd {
+public class UserAdd extends HttpServlet{
     private static final long serialVersionUID = 1L;
     
     public UserAdd() {

@@ -29,7 +29,7 @@ import java.util.Scanner;
  * Servlet implementation class UserAdd
  */
 @WebServlet("/Userremove")
-public class UserRemove {
+public class UserRemove extends HttpServlet{
     private static final long serialVersionUID = 1L;
     
     public UserRemove() {
