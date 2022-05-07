@@ -61,7 +61,7 @@
 	  	<div class='inpcontainer-info'>
 	  	<form action="UpdateTracking" method="post">
 	  	<h1><c:out value = "${company.getName()}"/></h1><br>
-	  	<input type="hidden" name = "name" value="${company.getName()}">
+	  	<input type="hidden" name = "companyID" value="${company.getId()}">
 	  		<h3>Is in your active applications.</h3>
   		<div class='statuscontainer'>
   		<button type="submit" onClick="submit(this.form)" class="addbutton">Add</button>
