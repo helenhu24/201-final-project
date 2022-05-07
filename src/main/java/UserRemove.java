@@ -1,3 +1,4 @@
+
 package main.java;
 
 
@@ -28,7 +29,7 @@ import java.util.Scanner;
 /**
  * Servlet implementation class UserAdd
  */
-@WebServlet("/Userremove")
+@WebServlet("/UserRemove")
 public class UserRemove extends HttpServlet{
     private static final long serialVersionUID = 1L;
     
@@ -38,11 +39,11 @@ public class UserRemove extends HttpServlet{
             throws ServletException, IOException {
     	boolean notlog = true;
 	    for (Cookie c : request.getCookies()){
-	    	if (c.getName().compareTo("email") == 0) {
+	    	if (c.getName().compareTo("loginID") == 0) {
 	    		notlog = false;
 	    		String email = c.getValue();
-//	    		need to have all companies have input form with company id
-	    		String coID = request.getParameter("coID");
+//	    		need to have all companies have input form with company i
+	    		String coID = request.getParameter("companyID");
 	    		int num = Integer.parseInt(coID);
 	    		
 	    		String db =Constant.URL;
@@ -52,8 +53,9 @@ public class UserRemove extends HttpServlet{
 	    		try(Connection conn = DriverManager.getConnection(db,user,pwd);
 	    				PreparedStatement stmt = conn.prepareStatement(sql);){
 	                	Class.forName("com.mysql.jdbc.Driver");
-	                	stmt.setInt(1, num);
-	                	stmt.setString(2, email);
+	                	stmt.setString(1, email);
+	                	stmt.setInt(2, num);
+	                	stmt.executeUpdate();
 	                	
 	    		} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -62,13 +64,13 @@ public class UserRemove extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	            request.getRequestDispatcher("/Index.jsp").forward(request, response);
+	            request.getRequestDispatcher("/SearchAll").forward(request, response);
 	            break;
 	    	}
 	    }
 	    if(notlog) {
-	    	request.setAttribute("unableAdd", "Unable to remove Company from list because user is not logged in!");
-	    	request.getRequestDispatcher("/Index.jsp").forward(request, response);
+	    	request.setAttribute("unableAdd", "Unable to add Company to list because user is not logged in!");
+	    	request.getRequestDispatcher("/AllCompanies.jsp").forward(request, response);
 	    }
     	
     }
