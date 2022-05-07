@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@ page session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="<a href="https://urldefense.com/v3/__http://java.sun.com/jsp/jstl/functions__;!!LIr3w8kk_Xxm!ouTSuYjlIhWOH2ovcboihiWKbMWdLdzKFisXnt0gZo9vCgnCUszoF_iv6BFNWHholHEOdVBNfT6fOqc$">http://java.sun.com/jsp/jstl/functions</a>" prefix="fn" %>  
+<%@ taglib uri="<a href="https://urldefense.com/v3/__http://java.sun.com/jsp/jstl/core__;!!LIr3w8kk_Xxm!ouTSuYjlIhWOH2ovcboihiWKbMWdLdzKFisXnt0gZo9vCgnCUszoF_iv6BFNWHholHEOdVBN4nL6bvU$">http://java.sun.com/jsp/jstl/core</a>" prefix="c" %> 
 <html>
 <head>
 <script src="https://kit.fontawesome.com/86f2855db0.js" crossorigin="anonymous"></script>
@@ -121,7 +121,9 @@ a {
 <body>
 <div class='optioncontainer'>
   <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
-  <a href="AllCompanies.jsp"><button class="optionbutton2">All Companies</button></a>
+  <form action="SearchAll" method="post">
+  <button class="optionbutton2" onClick="submit(this.form)">All Companies</button>
+  </form>
   <form action="SearchDispatcher" method="post">
   <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
 		<input type="text" id="search" name="search" placeholder=" ">

@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -120,7 +121,7 @@ public class CompanyDataParser {
 		String db =Constant.URL;
 		String user =  Constant.DBUserName;
 		String pwd = Constant.DBPassword;
-		String sql = "";
+		String sql = "{CALL GetCompanyName(?)}";
 		
 		if(sort.equals("dateadded")) {
 			sql = "{CALL dateadded(?)}";

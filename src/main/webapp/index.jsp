@@ -15,7 +15,10 @@
   <%
   String keyWord = (String)request.getAttribute("search");
   String sort = (String)request.getAttribute("sort");
-  ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sort,"inProgress");
+  if(sort ==null){
+	  sort="";
+  }
+//  ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sort,"inProgress");
   %>
   
 <%@ include file="header.jsp" %><br>

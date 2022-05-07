@@ -1,3 +1,4 @@
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -42,8 +43,13 @@ public class SearchAll extends HttpServlet {
         // TODO
     	String keyWord = request.getParameter("search");
         String sortBy = request.getParameter("sort");
-        
-        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy);
+        if (keyWord == null) {
+        	keyWord = "";
+        }
+        if (sortBy == null) {
+        	sortBy = "alphabetical";
+        }
+        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy, "hi");
         request.setAttribute("search", keyWord);
         request.setAttribute("sort", sortBy);
         request.getRequestDispatcher("/AllCompanies.jsp").forward(request, response);
