@@ -38,11 +38,12 @@ public class UserAdd extends HttpServlet{
             throws ServletException, IOException {
     	boolean notlog = true;
 	    for (Cookie c : request.getCookies()){
-	    	if (c.getName().compareTo("email") == 0) {
+	    	if (c.getName().compareTo("loginID") == 0) {
 	    		notlog = false;
 	    		String email = c.getValue();
-//	    		need to have all companies have input form with company id
-	    		String coID = request.getParameter("coID");
+//	    		need to have all companies have input form with company i
+	    		String coID = request.getParameter("companyID");
+	    		System.out.println(coID);
 	    		int num = Integer.parseInt(coID);
 	    		
 	    		String db =Constant.URL;
@@ -54,6 +55,7 @@ public class UserAdd extends HttpServlet{
 	                	Class.forName("com.mysql.jdbc.Driver");
 	                	stmt.setString(1, email);
 	                	stmt.setInt(2, num);
+	                	stmt.executeUpdate();
 	                	
 	    		} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -62,7 +64,7 @@ public class UserAdd extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	            request.getRequestDispatcher("/AllCompanies.jsp").forward(request, response);
+	            request.getRequestDispatcher("/SearchAll").forward(request, response);
 	            break;
 	    	}
 	    }
