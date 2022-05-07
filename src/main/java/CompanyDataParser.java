@@ -129,7 +129,7 @@ public class CompanyDataParser {
 				sql = "{CALL AllByAlphabetical(?)}";
 			}
 			else {
-				System.out.println("else in getCompanies");
+				sql = "{CALL AllByNumApps(?)}";
 			}
 		}
 		else if(page.equals("inProgress")) {
@@ -140,7 +140,7 @@ public class CompanyDataParser {
 				sql = "{CALL InPByAlphabetical(?)}";
 			}
 			else {
-				System.out.println("else in getCompanies");
+				sql = "{CALL InPByNumApps(?)}";
 			}
 		}
 		
