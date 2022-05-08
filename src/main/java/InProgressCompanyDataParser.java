@@ -23,7 +23,7 @@ import javax.servlet.annotation.WebServlet;
  * A class that pretends to be the Yelp API
  */
 
-public class CompanyDataParser {
+public class InProgressCompanyDataParser {
     private static Boolean ready = false;
 
   public static ArrayList<String> stage = new ArrayList<String>();

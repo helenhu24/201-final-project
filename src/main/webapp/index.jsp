@@ -21,7 +21,7 @@
 	  
   }
 //  ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sort,"inProgress");
-  ArrayList<Company> arr = (ArrayList<Company>)request.getAttribute("arr");
+  Object arr = request.getAttribute("arr");
   %>
   
 <%@ include file="header.jsp" %><br>
@@ -32,7 +32,9 @@
 <%} %>
 
 <div class='optioncontainer'>
-  <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
+<form action="SearchInProgress" method="post">
+  <button class="optionbutton" onClick="submit(this.form)">In Progress</button>
+  </form>
   <form action="SearchAll" method="post">
   <button class="optionbutton2" onClick="submit(this.form)">All Companies</button>
   </form>
@@ -48,38 +50,45 @@
 		  <option value="alphabetical">Name A-Z</option>
 		</select>
    	</div><br>
-
-<%// <c:forEach items = "${requestScope.arr}" var = "company">
-//<h1><c:out value = "${company.getName()}"/></h1><br>
-//<input type="hidden" name = "companyID" value="${company.getId()}">	%>
-<%for(int j = 0; j < arr.size();j++){ 
-	Company company = arr.get(j);%>
+<c:forEach items = "${requestScope.iparr}" var = "company">
 	<div class='inpcontainer'>
 	  <div class='inpcontainer-item'>
 	  <div class='inpcontainer-detailsbox'>
 	  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
-	  <h1><%=company.name%></h1><br>
-	  	<input type="hidden" name = "companyID" value="<%=company.id%>">	
+	  <h1><c:out value = "${company.getName()}"/></h1><br>
+	  	<input type="hidden" name = "companyID" value="${company.getId()}">
 	  <h2>Software Engineer</h2><br>
 	  <div class='statuscontainer'>
 	  <h2>Your Status:</h2><br>
 		<form id="changeStatus" action="changeStatus" method="post">
-		  <% for(int i =0; i<company.getStages().size();i++){%>
-				<input type="radio" id="stage1" name="status" value='<%=i%>' 
-				<%if(company.progress == i){ %>checked<% } %>>
-				<label for="stage1"><%=company.getStages().get(i)%></label><p>
-				<%}%>
-		
 		<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
 		</form>
 	  </div>
 	  </div>
 	  </div>
 	</div>
-<%} %>
-<% //</c:forEach>%>
+</c:forEach>
 
 
+<div class='inpcontainer'>
+  <div class='inpcontainer-item'>
+  <div class='inpcontainer-detailsbox'>
+  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
+  <div class='inpcontainer-info'><h1>TESTING WORMS</h1><br>
+  <h2>Software Engineer</h2><br>
+  <h3>Date Added: 04/13/2022</h3></div>
+  <div class='statuscontainer'>
+  <form action="UpdateTracking" method="post">
+  <input type="hidden" name = "companyID" value="22">
+  	Status:
+  	<input type="radio" id="1" name="status" value="1"><label for="1">grubs</label>
+  	<input type="radio" id="2" name="status" value="2"><label for="2">dirt</label><br>
+  	<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button>
+  </form>
+  </div>
+  </div>
+  </div>
+</div>
 
 </body>
 </html>

@@ -1,3 +1,5 @@
+package main.java;
+
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -17,11 +19,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 //import java.io.Serial;
 import java.util.Scanner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+@SpringBootApplication
+@RestController
 
 /**
  * Servlet implementation class SearchAll
  */
-@WebServlet("/SearchAll")
+@WebServlet(urlPatterns = "/SearchAll/*", loadOnStartup = 1)
 public class SearchAll extends HttpServlet {
    // @Serial
     private static final long serialVersionUID = 1L;
@@ -48,20 +57,19 @@ public class SearchAll extends HttpServlet {
         	keyWord = "";
         }
         if (sortBy == null) {
-        	sortBy = "numApps";
+        	sortBy = "alphabetical";
         }
         
-        String email = "empty";
-        
+        // Get loginID
+        String loginID = "";
 	    for (Cookie c : request.getCookies()){
 	    	if (c.getName().compareTo("loginID") == 0) {
-	    		email = c.getValue();
-	    		
+	    		loginID = c.getValue();
+	    		System.out.println("loginID is " + loginID);
 	    	}
 	    }
-		
         
-        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy,"All", email);
+        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy, "All");
         request.setAttribute("search", keyWord);
         request.setAttribute("sort", sortBy);
         request.setAttribute("arr", arr);

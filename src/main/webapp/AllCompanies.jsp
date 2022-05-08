@@ -34,7 +34,9 @@
 <%} %>
 
 <div class='optioncontainer'>
-  <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
+  <form action="SearchInProgress" method="post">
+  <button class="optionbutton" onClick="submit(this.form)">In Progress</button>
+  </form>
   <form action="SearchAll" method="post">
   <button class="optionbutton2" onClick="submit(this.form)">All Companies</button>
   </form>
