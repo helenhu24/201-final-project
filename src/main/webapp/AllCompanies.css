@@ -230,7 +230,7 @@ input[type=text]:not(:placeholder-shown) {
     color: #C4C4C4;
     padding: 15px 0px 0px 8px;
     position: relative;
-    left: 190px;
+    left: 210px;
     bottom: 30px;
     pointer-events: none;
 }
@@ -245,7 +245,7 @@ input[type=text]:not(:placeholder-shown) {
     color:  #9F9F9F;
     cursor: pointer;
     position: relative;
-   left: 60px;
+   left: 56px;
 }
 
 form, table {

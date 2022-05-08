@@ -31,7 +31,23 @@
 	<input type="hidden" name="loggedIn" value="false"> 
 <%} %>
 
-<%@ include file="Searchbar.jsp" %><br>
+<div class='optioncontainer'>
+  <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
+  <form action="SearchAll" method="post">
+  <button class="optionbutton2" onClick="submit(this.form)">All Companies</button>
+  </form>
+  <form action="SearchDispatcher" method="post">
+  <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
+		<input type="text" id="search" name="search" placeholder=" ">
+  </form>
+  </div>
+   	<div class="selectcontainer">
+   	<p>Sorting By: 
+		<select name="sort" id="sort">
+		  <option value="numApps">Number of Applications</option>
+		  <option value="alphabetical">Name A-Z</option>
+		</select>
+   	</div><br>
 <%
 	String id = request.getParameter("");
 	CompanyDataParser co = new CompanyDataParser();
