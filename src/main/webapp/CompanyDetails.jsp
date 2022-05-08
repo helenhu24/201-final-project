@@ -20,14 +20,13 @@
 <body>
 <%@ include file="header.jsp" %><br>
 <%
-	String id = request.getParameter("");
-	CompanyDataParser co = new CompanyDataParser();
-	Company comp = co.getCompany(id);
-	co.setStages(id);
-	ArrayList<String> stage = co.stage;
-	ArrayList<Integer> people = co.people;
+	ArrayList<String> stage = (ArrayList<String>)request.getAttribute("stage");
+	ArrayList<Integer> people = (ArrayList<Integer>)request.getAttribute("people");
+	Object company = request.getAttribute("comp");
+	Object progress = request.getAttribute("progress");
 %>
-<h1>Company Name<!-- <%= comp.getName() %> --></h1><p>
+<c:forEach items = "${requestScope.company}" var = "company"}>
+<h1>${company.getName()}</h1><p>
 <div class='inpcontainer'>
   <div class='inpcontainer-item'>
   <div class='inpcontainer-detailsbox'>
@@ -51,12 +50,13 @@
 <div class='inpcontainer-status'>
 <h2>Your Status:</h2><br>
 <form id="changeStatus" action="changeStatus" method="post">
-  <% for(int i =0; i<people.size();i++){%>
-		<input type="radio" id="stage1" name="status" value='<%=i%>'><label for="stage1"><%=stage.get(i)%></label><p>
+  <% for(int i =0; i<stage.size();i++){%>
+		<input type="radio" id="stage1" name="status" value='<%=i%>' <%if(i==(Integer)progress){%>checked<%} %>><label for="stage1"><%=stage.get(i)%></label><p>
   <%} %>
 <button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
 </form>
 </div>
 </div>
+</c:forEach>
 </body>
 </html>
