@@ -58,16 +58,23 @@
   		<div class='inpcontainer'>
 	  	<div class='inpcontainer-item'>
 	  	<div class='inpcontainer-detailsbox'>
-	  	<form action="UserAdd" method="post">
+	  	
 	  	<div class='inpcontainer-info'>
 	  	<h1><c:out value = "${company.getName()}"/></h1><br>
-	  	<input type="hidden" name = "companyID" value="${company.getId()}">
 	  		<h3>Is not in your active applications.</h3>
 	  	</div>
 	  	<div class='statuscontainer'>
-  		<button type="submit" onClick="submit(this.form)" class="addbutton">Add</button>
+	  	<form action="UserAdd" method="post">
+	  	<input type="hidden" name = "companyID" value="${company.getId()}">
+	  	<% if (loggedIn) { %>
+         <button type="submit" onClick="submit(this.form)" class="addbutton">Add</button>
+      <% } %>
+  		</form>
+  		<form action="DetailDispatcher" method="post">
+	  	<input type="hidden" name = "companyID" value="${company.getId()}">
+  		<button type="submit" onClick="submit(this.form)" class="addbutton">details</button>
+  		</form>
 	  	</div>
-	  	</form>
 	  	</div>
 	  	</div>
 	  	</div>
