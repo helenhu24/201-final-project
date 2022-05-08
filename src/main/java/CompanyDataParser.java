@@ -1,6 +1,3 @@
-package main.java;
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -172,6 +169,87 @@ public class CompanyDataParser {
 						sql += " WHERE companyName LIKE %" + keyWord + "%";
 					}
 					
+					ResultSet rs = stmt.executeQuery();
+					while(rs.next()) {
+						Companies.add(new Company(rs.getString("companyID"), rs.getString("companyName"), rs.getInt("numApps")));
+					}
+			} catch(SQLException ex) {
+					System.out.println("SQLException: " + ex.getMessage() + " in getCompanies");
+			}
+		
+        //TODO get list of Company based on the param
+        return Companies;
+
+    }
+    public static ArrayList<Company> getAllCompanies(String loginID, String keyWord, String sort, String page) {
+    	
+  //MODIFY TO ACCOUNT FOR COMPANIES IN PROGRESS
+    	
+        ArrayList<Company> Companies = new ArrayList<Company>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+        	System.out.print("ClassNotFound in getCompanies");
+            e.printStackTrace();
+        }        
+		String db =Constant.URL;
+		String user =  Constant.DBUserName;
+		String pwd = Constant.DBPassword;
+		String sql = "SELECT * from Company WHERE companyID NOT IN (SELECT companyID from bridge WHERE loginID = '" + loginID + "')";
+		if(keyWord==null) {}
+		else if (keyWord.compareTo("") != 0) {
+			sql += " AND companyName LIKE '%" + keyWord + "%'";
+		}
+		if(sort.equals("dateadded")) {
+			sql = " ORDER BY numApps DESC";
+		}
+		else if(sort.equals("alphabetical")) {
+			sql += " ORDER BY companyName";
+		}
+		try(Connection conn = DriverManager.getConnection(db,user,pwd);
+				PreparedStatement stmt = conn.prepareStatement(sql);){
+					
+					ResultSet rs = stmt.executeQuery();
+					while(rs.next()) {
+						Companies.add(new Company(rs.getString("companyID"), rs.getString("companyName"), rs.getInt("numApps")));
+					}
+			} catch(SQLException ex) {
+					System.out.println("SQLException: " + ex.getMessage() + " in getCompanies");
+			}
+		
+        //TODO get list of Company based on the param
+        return Companies;
+
+    }
+
+    public static ArrayList<Company> getInProgressCompanies(String loginID, String keyWord, String sort, String page) {
+    	
+  //MODIFY TO ACCOUNT FOR COMPANIES IN PROGRESS
+    	
+        ArrayList<Company> Companies = new ArrayList<Company>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+        	System.out.print("ClassNotFound in getCompanies");
+            e.printStackTrace();
+        }        
+		String db =Constant.URL;
+		String user =  Constant.DBUserName;
+		String pwd = Constant.DBPassword;
+		String sql = "SELECT * from Company WHERE companyID IN (SELECT companyID from bridge WHERE loginID = '" + loginID + "')";
+		if(keyWord==null) {}
+		else if (keyWord.compareTo("") != 0) {
+			sql += " AND companyName LIKE '%" + keyWord + "%'";
+		}
+		if(sort.equals("dateadded")) {
+			sql = " ORDER BY numApps DESC";
+		}
+		else if(sort.equals("alphabetical")) {
+			sql += " ORDER BY companyName";
+		}
+		
+		try(Connection conn = DriverManager.getConnection(db,user,pwd);
+				PreparedStatement stmt = conn.prepareStatement(sql);){					
 					ResultSet rs = stmt.executeQuery();
 					while(rs.next()) {
 						Companies.add(new Company(rs.getString("companyID"), rs.getString("companyName"), rs.getInt("numApps")));

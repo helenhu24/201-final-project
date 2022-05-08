@@ -1,5 +1,3 @@
-package main.java;
-
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -19,13 +17,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 //import java.io.Serial;
 import java.util.Scanner;
-import org.springframework.boot.SpringApplication;
+/*import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
-@RestController
+@RestController*/
 
 /**
  * Servlet implementation class SearchInProgress
@@ -65,15 +63,14 @@ public class SearchInProgress extends HttpServlet {
 	    for (Cookie c : request.getCookies()){
 	    	if (c.getName().compareTo("loginID") == 0) {
 	    		loginID = c.getValue();
-	    		System.out.println("loginID is " + loginID);
 	    	}
 	    }
         
-        ArrayList<Company> iparr = InProgressCompanyDataParser.getCompanies(keyWord,sortBy, "All");
+        ArrayList<Company> arr = CompanyDataParser.getInProgressCompanies(loginID, keyWord,sortBy, "All");
         request.setAttribute("search", keyWord);
         request.setAttribute("sort", sortBy);
-        request.setAttribute("iparr", iparr);
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.setAttribute("arr", arr);
+        request.getRequestDispatcher("/InProgressCompanies.jsp").forward(request, response);
     }
 
     /**

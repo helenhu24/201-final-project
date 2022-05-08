@@ -1,6 +1,3 @@
-package main.java;
-
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -18,14 +15,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 //import java.io.Serial;
-import java.util.Scanner;
+/*import java.util.Scanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
-@RestController
+@RestController*/
 
 /**
  * Servlet implementation class SearchAll
@@ -65,11 +62,15 @@ public class SearchAll extends HttpServlet {
 	    for (Cookie c : request.getCookies()){
 	    	if (c.getName().compareTo("loginID") == 0) {
 	    		loginID = c.getValue();
-	    		System.out.println("loginID is " + loginID);
 	    	}
 	    }
-        
-        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy, "All");
+	    ArrayList<Company> arr;
+        if (loginID == "") {
+        	arr = CompanyDataParser.getCompanies(keyWord,sortBy, "All");
+        }
+        else {
+            arr = CompanyDataParser.getAllCompanies(loginID, keyWord,sortBy, "All");
+        }
         request.setAttribute("search", keyWord);
         request.setAttribute("sort", sortBy);
         request.setAttribute("arr", arr);

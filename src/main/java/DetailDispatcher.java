@@ -1,5 +1,3 @@
-package main.java;
-
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -31,8 +29,8 @@ public class DetailDispatcher extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("companyID");
 		CompanyDataParser co = new CompanyDataParser();
-		Company comp = co.getCompany(id);
-		co.setStages(id);
+		Company comp = CompanyDataParser.getCompany(id);
+		CompanyDataParser.setStages(id);
 		String email = "";
 	    for (Cookie c : request.getCookies()){
 	    	if (c.getName().compareTo("loginID") == 0) {

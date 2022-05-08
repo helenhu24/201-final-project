@@ -40,7 +40,7 @@
   <form action="SearchAll" method="post">
   <button class="optionbutton2" onClick="submit(this.form)">All Companies</button>
   </form>
-  <form action="SearchDispatcher" method="post">
+  <form action="SearchAll" method="post">
   <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
 		<input type="text" id="search" name="search" placeholder=" ">
   </form>

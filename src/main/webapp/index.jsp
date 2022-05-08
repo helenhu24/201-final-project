@@ -1,5 +1,4 @@
 <%@page import="java.util.*"%>
-<%@ page import ="main.java.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +37,7 @@
   <form action="SearchAll" method="post">
   <button class="optionbutton2" onClick="submit(this.form)">All Companies</button>
   </form>
-  <form action="SearchDispatcher" method="post">
+  <form method="post">
   <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
 		<input type="text" id="search" name="search" placeholder=" ">
   </form>
@@ -50,45 +49,6 @@
 		  <option value="alphabetical">Name A-Z</option>
 		</select>
    	</div><br>
-<c:forEach items = "${requestScope.iparr}" var = "company">
-	<div class='inpcontainer'>
-	  <div class='inpcontainer-item'>
-	  <div class='inpcontainer-detailsbox'>
-	  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
-	  <h1><c:out value = "${company.getName()}"/></h1><br>
-	  	<input type="hidden" name = "companyID" value="${company.getId()}">
-	  <h2>Software Engineer</h2><br>
-	  <div class='statuscontainer'>
-	  <h2>Your Status:</h2><br>
-		<form id="changeStatus" action="changeStatus" method="post">
-		<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
-		</form>
-	  </div>
-	  </div>
-	  </div>
-	</div>
-</c:forEach>
-
-
-<div class='inpcontainer'>
-  <div class='inpcontainer-item'>
-  <div class='inpcontainer-detailsbox'>
-  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
-  <div class='inpcontainer-info'><h1>TESTING WORMS</h1><br>
-  <h2>Software Engineer</h2><br>
-  <h3>Date Added: 04/13/2022</h3></div>
-  <div class='statuscontainer'>
-  <form action="UpdateTracking" method="post">
-  <input type="hidden" name = "companyID" value="22">
-  	Status:
-  	<input type="radio" id="1" name="status" value="1"><label for="1">grubs</label>
-  	<input type="radio" id="2" name="status" value="2"><label for="2">dirt</label><br>
-  	<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button>
-  </form>
-  </div>
-  </div>
-  </div>
-</div>
 
 </body>
 </html>
