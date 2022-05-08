@@ -21,6 +21,7 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 //import java.io.Serial;
@@ -56,6 +57,26 @@ public class UserRemove extends HttpServlet{
 	                	stmt.setString(1, email);
 	                	stmt.setInt(2, num);
 	                	stmt.executeUpdate();
+	                	String sqlpro = "Select progress from bridge where companyID = ? and loginID = ?";
+	                	PreparedStatement st3 = conn.prepareStatement(sqlpro);
+	                	st3.setInt(1, num);
+	                	st3.setString(2, email);
+	                	ResultSet rs3 = st3.executeQuery();
+	                	rs3.next();
+	                	int progress = rs3.getInt("progress");
+	                	String sql2 = "Select people from stages where companyID = ? and stepnum = ?";
+	                	PreparedStatement st = conn.prepareStatement(sql2);
+	                	st.setInt(1, num);
+	                	st.setInt(2, progress);
+	                	ResultSet rs = st.executeQuery();
+	                	rs.next();
+	                	int people = rs.getInt("people");
+	                	people-=1;
+	                	String sqlupdate = "Update stages set people = ? where companyID = ? and stepnum = 1";
+	                	PreparedStatement st2 = conn.prepareStatement(sql2);
+	                	st2.setInt(1, people);
+	                	st2.setInt(2, num);
+	                	st2.executeUpdate();
 	                	
 	    		} catch (SQLException e) {
 					// TODO Auto-generated catch block
