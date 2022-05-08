@@ -73,7 +73,7 @@ public class SearchInProgress extends HttpServlet {
         request.setAttribute("search", keyWord);
         request.setAttribute("sort", sortBy);
         request.setAttribute("arr", arr);
-        request.getRequestDispatcher("/AllCompanies.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
     /**
