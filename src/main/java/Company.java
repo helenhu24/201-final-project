@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Company {
 
@@ -6,6 +7,8 @@ public class Company {
 	public String name;
 	
 	public int numApps;
+	
+	ArrayList<String> stages;
 	
 	public Company(String companyID, String companyName, int numApps) {
 		// TODO Auto-generated constructor stub
