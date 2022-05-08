@@ -12,6 +12,7 @@ import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,12 +33,23 @@ public class DetailDispatcher extends HttpServlet{
 		CompanyDataParser co = new CompanyDataParser();
 		Company comp = co.getCompany(id);
 		co.setStages(id);
+		String email = "";
+	    for (Cookie c : request.getCookies()){
+	    	if (c.getName().compareTo("loginID") == 0) {
+	    		email = c.getValue();
+	    		break;
+	    	}
+	    }
+		co.setProgress(id, email);
+		
+		int progress = co.prog;
 		ArrayList<String> stage = co.stage;
 		ArrayList<Integer> people = co.people;
 		
         request.setAttribute("stage", stage);
         request.setAttribute("people", people);
         request.setAttribute("company", comp);
+        request.setAttribute("progress", progress);
         request.getRequestDispatcher("/CompanyDetails.jsp").forward(request, response);
     }
     
