@@ -231,7 +231,7 @@ public class CompanyDataParser {
 		else if (keyWord.compareTo("") != 0) {
 			sql += " AND companyName LIKE '%" + keyWord + "%'";
 		}
-		if(sort.equals("dateadded")) {
+		if(sort.equals("numApps")) {
 			sql = " ORDER BY numApps DESC";
 		}
 		else if(sort.equals("alphabetical")) {
@@ -272,7 +272,7 @@ public class CompanyDataParser {
 		else if (keyWord.compareTo("") != 0) {
 			sql += " AND companyName LIKE '%" + keyWord + "%'";
 		}
-		if(sort.equals("dateadded")) {
+		if(sort.equals("numApps")) {
 			sql = " ORDER BY numApps DESC";
 		}
 		else if(sort.equals("alphabetical")) {
