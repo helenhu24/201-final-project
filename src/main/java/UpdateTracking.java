@@ -16,6 +16,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 //import java.io.Serial;
 import java.util.Scanner;
@@ -32,7 +36,6 @@ public class UpdateTracking extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	System.out.println(request.getParameter("companyID"));
         // Get loginID
         String loginID = "";
 	    for (Cookie c : request.getCookies()){
@@ -40,11 +43,30 @@ public class UpdateTracking extends HttpServlet {
 	    		loginID = c.getValue();
 	    	}
 	    }
-	    String id = request.getParameter("companyID");
-	    String stage = request.getParameter("status");
-	    System.out.println("CompanyID: " + id);
-	    System.out.println("StageID: " + stage);
-	    System.out.println("LoginID: " + loginID);
+	    // Get company and status ID
+	    int id = Integer.parseInt(request.getParameter("companyID"));
+	    int stage = Integer.parseInt(request.getParameter("status"));
+	    
+	    // Update status
+	    String db = Constant.URL;
+		String user =  Constant.DBUserName;
+		String pwd = Constant.DBPassword;
+		
+		String q = "UPDATE bridge SET progress = ? WHERE companyID = ? AND loginID = ?";
+		try(Connection conn = DriverManager.getConnection(db,user,pwd);
+				PreparedStatement stmt = conn.prepareStatement(q);){
+            	Class.forName("com.mysql.jdbc.Driver");
+            	stmt.setInt(1, stage);
+            	stmt.setInt(2, id);
+            	stmt.setString(3, loginID);
+            	stmt.executeUpdate();
+            	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+        request.getRequestDispatcher("/SearchAll").forward(request, response);
     }
 
     /**
