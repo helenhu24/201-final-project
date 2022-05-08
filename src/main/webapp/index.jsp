@@ -80,25 +80,6 @@
 <% //</c:forEach>%>
 
 
-<div class='inpcontainer'>
-  <div class='inpcontainer-item'>
-  <div class='inpcontainer-detailsbox'>
-  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
-  <div class='inpcontainer-info'><h1>TESTING WORMS</h1><br>
-  <h2>Software Engineer</h2><br>
-  <h3>Date Added: 04/13/2022</h3></div>
-  <div class='statuscontainer'>
-  <form action="UpdateTracking" method="post">
-  <input type="hidden" name = "companyID" value="22">
-  	Status:
-  	<input type="radio" id="1" name="status" value="1"><label for="1">grubs</label>
-  	<input type="radio" id="2" name="status" value="2"><label for="2">dirt</label><br>
-  	<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button>
-  </form>
-  </div>
-  </div>
-  </div>
-</div>
 
 </body>
 </html>
