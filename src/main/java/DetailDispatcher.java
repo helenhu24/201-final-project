@@ -32,12 +32,17 @@ public class DetailDispatcher extends HttpServlet{
 		Company comp = CompanyDataParser.getCompany(id);
 		CompanyDataParser.setStages(id);
 		String email = "";
-	    for (Cookie c : request.getCookies()){
-	    	if (c.getName().compareTo("loginID") == 0) {
-	    		email = c.getValue();
-	    		break;
-	    	}
-	    }
+		
+		boolean loggedIn = false;
+		if(request.getCookies() != null) {
+		    for (Cookie c : request.getCookies()){
+		    	if (c.getName().compareTo("loginID") == 0) {
+		    		email = c.getValue();
+		    		loggedIn = true;
+		    		break;
+		    	}
+		    }
+		}
 		co.setProgress(id, email);
 		
 		int progress = co.prog;
@@ -48,6 +53,7 @@ public class DetailDispatcher extends HttpServlet{
         request.setAttribute("people", people);
         request.setAttribute("company", comp);
         request.setAttribute("progress", progress);
+        request.setAttribute("loggedIn", loggedIn);
         request.getRequestDispatcher("/CompanyDetails.jsp").forward(request, response);
     }
     
