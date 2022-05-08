@@ -69,10 +69,10 @@ public class SearchInProgress extends HttpServlet {
 	    	}
 	    }
         
-        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy, "All");
+        ArrayList<Company> iparr = InProgressCompanyDataParser.getCompanies(keyWord,sortBy, "All");
         request.setAttribute("search", keyWord);
         request.setAttribute("sort", sortBy);
-        request.setAttribute("arr", arr);
+        request.setAttribute("iparr", iparr);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
