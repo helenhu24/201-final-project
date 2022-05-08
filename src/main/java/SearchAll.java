@@ -1,5 +1,3 @@
-package main.java;
-
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -50,22 +48,22 @@ public class SearchAll extends HttpServlet {
         	keyWord = "";
         }
         if (sortBy == null) {
-        	sortBy = "alphabetical";
+        	sortBy = "numApps";
         }
         
-        // Get loginID
-        String loginID = "";
+        String email = "empty";
+        
 	    for (Cookie c : request.getCookies()){
 	    	if (c.getName().compareTo("loginID") == 0) {
-	    		loginID = c.getValue();
-	    		System.out.println("loginID is " + loginID);
+	    		email = c.getValue();
+	    		
 	    	}
 	    }
+		
         
-        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy, "All");
+        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy,"All", email);
         request.setAttribute("search", keyWord);
         request.setAttribute("sort", sortBy);
-        request.setAttribute("arr", arr);
         request.getRequestDispatcher("/AllCompanies.jsp").forward(request, response);
     }
 

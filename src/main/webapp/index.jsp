@@ -49,12 +49,12 @@
 		</select>
    	</div><br>
 <%
-	String id = request.getParameter("");
+	//String id = request.getParameter("");
 	CompanyDataParser co = new CompanyDataParser();
-	Company comp = co.getCompany(id);
-	co.setStages(id);
-	ArrayList<String> stage = co.stage;
-	ArrayList<Integer> people = co.people;
+	//Company comp = co.getCompany(id);
+	//co.setStages(id);
+	//ArrayList<String> stage = co.stage;
+	//ArrayList<Integer> people = co.people;
 %>
 <c:forEach items = "${requestScope.arr}" var = "company">
 	<div class='inpcontainer'>
@@ -63,13 +63,20 @@
 	  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
 	  <h1><c:out value = "${company.getName()}"/></h1><br>
 	  	<input type="hidden" name = "companyID" value="${company.getId()}">
+	  	<%	String id = %> ${company.getId()} <%; 
+	  	Company comp = co.getCompany(id);
+		co.setStages(id);
+		ArrayList<String> stage = co.stage;
+		ArrayList<Integer> people = co.people; %>
+		
 	  <h2>Software Engineer</h2><br>
 	  <div class='statuscontainer'>
 	  <h2>Your Status:</h2><br>
 		<form id="changeStatus" action="changeStatus" method="post">
 		  <% for(int i =0; i<people.size();i++){%>
-				<input type="radio" id="stage1" name="status" value='<%=i%>'><label for="stage1"><%=stage.get(i)%></label><p>
-		  <%} %>
+				<input type="radio" id="stage1" name="status" value='<%=i%>' <%if(comp.progress == i + 1){ %>checked<%} %>><label for="stage1"><%=stage.get(i)%></label><p>
+		  
+		  <%}%>
 		<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
 		</form>
 	  </div>

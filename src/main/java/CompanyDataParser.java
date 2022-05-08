@@ -26,6 +26,7 @@ public class CompanyDataParser {
 
   public static ArrayList<String> stage = new ArrayList<String>();
   public static ArrayList<Integer> people = new ArrayList<Integer>();
+  public static int prog;
   /**
    * Initializes the DB with json data 
    *
@@ -63,6 +64,36 @@ public class CompanyDataParser {
   	}
   }
 
+  public static void setProgress(String id, String email){
+	  	Map<Integer,String> m = new TreeMap<Integer, String>();
+	      try {
+	          Class.forName("com.mysql.jdbc.Driver");
+	  
+	      } catch (ClassNotFoundException e) {
+	      	System.out.print("ClassNotFound in getStages");
+	          e.printStackTrace();
+	      }
+	      
+	  	String db = Constant.URL;
+	  	String user =  Constant.DBUserName;
+	  	String pwd = Constant.DBPassword;
+	  	String sql = "{CALL GetProgress(?,?)}";
+//	  	String sql2 = "Select"
+	  
+	  	try(Connection conn = DriverManager.getConnection(db,user,pwd);){
+	  		PreparedStatement st = conn.prepareStatement(sql);
+	  		st.setString(1,id);
+	  		st.setString(2, email);
+	  		ResultSet rs = st.executeQuery();
+	  		while(rs.next()) {
+	  			prog = rs.getInt("progress");
+	  		}
+	  		
+	  	} catch (SQLException e) {
+	  		// TODO Auto-generated catch block
+	  		e.printStackTrace();
+	  	}
+	  }
     
     public static Company getCompany(String id) {
         try {
@@ -135,7 +166,7 @@ public class CompanyDataParser {
      * @param searchType search in category or name
      * @return the list of Company matching the criteria
      */
-    public static ArrayList<Company> getCompanies(String keyWord, String sort, String page) {
+    public static ArrayList<Company> getCompanies(String keyWord, String sort, String page, String email) {
     	
   //MODIFY TO ACCOUNT FOR COMPANIES IN PROGRESS
     	
@@ -172,8 +203,17 @@ public class CompanyDataParser {
 					
 					ResultSet rs = stmt.executeQuery();
 					while(rs.next()) {
-						setStages(rs.getString("companyID"));
-						Companies.add(new Company(rs.getString("companyID"), rs.getString("companyName"), rs.getInt("numApps"), stage));
+						String compID = rs.getString("companyID");
+						setStages(compID);
+						Company newComp;
+						if(!email.equals("empty")) { //logged in
+							setProgress(compID, email);
+							newComp = new Company(compID, rs.getString("companyName"), rs.getInt("numApps"), stage, prog);
+						}
+						else {
+							newComp = new Company(compID, rs.getString("companyName"), rs.getInt("numApps"), stage);
+						}
+						Companies.add(newComp);
 					}
 			} catch(SQLException ex) {
 					System.out.println("SQLException: " + ex.getMessage() + " in getCompanies");

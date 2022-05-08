@@ -19,6 +19,15 @@ public class Company {
 		this.numApps = numApps;
 		this.stages = stages;
 	}
+	
+	public Company(String companyID, String companyName, int numApps, ArrayList<String> stages, int prog) {
+		// TODO Auto-generated constructor stub
+		this.id = companyID;
+		this.name = name;
+		this.numApps = numApps;
+		this.stages = stages;
+		this.progress = prog;
+	}
 
 	public Company() {
 		// TODO Auto-generated constructor stub

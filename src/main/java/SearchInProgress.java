@@ -2,6 +2,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +44,25 @@ public class SearchInProgress extends HttpServlet {
     	String keyWord = request.getParameter("search");
         String sortBy = request.getParameter("sort");
         
-        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy,"inProgress");
+        if (keyWord == null) {
+        	keyWord = "";
+        }
+        if (sortBy == null) {
+        	sortBy = "numApps";
+        }
+        
+        
+        String email = "empty";
+        
+	    for (Cookie c : request.getCookies()){
+	    	if (c.getName().compareTo("loginID") == 0) {
+	    		email = c.getValue();
+	    		
+	    	}
+	    }
+		
+        
+        ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sortBy,"inProgress", email);
         request.setAttribute("key_word", keyWord);
         request.setAttribute("sort", sortBy);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
