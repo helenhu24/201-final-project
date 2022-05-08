@@ -44,11 +44,16 @@ li a:hover {
 	    <% String uName = "";
 	    String log = "Login.jsp";
 	    boolean loggedIn = false;
-	    for (Cookie c : request.getCookies()){
-	    	if (c.getName().compareTo("userName") == 0) {
-	    		uName = c.getValue();
-	    		loggedIn = true;
-	    	}
+	    if(request.getCookies() == null){
+	    	loggedIn = false;
+	    }
+	    else{
+		    for (Cookie c : request.getCookies()){
+		    	if (c.getName().compareTo("userName") == 0) {
+		    		uName = c.getValue();
+		    		loggedIn = true;
+		    	}
+		    }
 	    }
 		if (loggedIn) { 
 			out.println("Hi " + uName.replace("#", " "));
