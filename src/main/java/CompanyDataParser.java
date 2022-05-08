@@ -1,4 +1,4 @@
-
+package main.java;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -169,63 +169,103 @@ public class CompanyDataParser {
     public static ArrayList<Company> getCompanies(String keyWord, String sort, String page, String email) {
     	
   //MODIFY TO ACCOUNT FOR COMPANIES IN PROGRESS
-        ArrayList<Company> Companies = new ArrayList<Company>();
-    	if(page.equals("InProgress")) {
-	        try {
-	            Class.forName("com.mysql.jdbc.Driver");
-	        } catch (ClassNotFoundException e) {
-	        	System.out.print("ClassNotFound in getCompanies");
-	            e.printStackTrace();
-	        }        
-			String db =Constant.URL;
-			String user =  Constant.DBUserName;
-			String pwd = Constant.DBPassword;
-			String sql = "SELECT * from Company";
-			
-			if(sort.equals("dateadded")) {
-				sql = "{CALL dateadded(?)}";
-			}
-			else if(sort.equals("alphabetical")) {
-				sql += " ORDER BY companyName";
-			}
-			else {
-				System.out.println("else in getCompanies");
-			}
-			
-			try(Connection conn = DriverManager.getConnection(db,user,pwd);
-					PreparedStatement stmt = conn.prepareStatement(sql);){
-						if(keyWord==null) {
-							System.out.println("keyWord null");
-						}
-						else if (keyWord.compareTo("") != 0) {
-							sql += " WHERE companyName LIKE %" + keyWord + "%";
-						}
-						
-						ResultSet rs = stmt.executeQuery();
-						while(rs.next()) {
-							String compID = rs.getString("companyID");
-							setStages(compID);
-							Company newComp;
-							if(!email.equals("empty")) { //logged in
-								setProgress(compID, email);
-								newComp = new Company(compID, rs.getString("companyName"), rs.getInt("numApps"), stage, prog);
-							}
-							else {
-								newComp = new Company(compID, rs.getString("companyName"), rs.getInt("numApps"), stage);
-							}
-							Companies.add(newComp);
-						}
-				} catch(SQLException ex) {
-						System.out.println("SQLException: " + ex.getMessage() + " in getCompanies");
+    	if(page.equals("inProgress")) {
+	        ArrayList<Company> Companies = new ArrayList<Company>();
+		        try {
+		            Class.forName("com.mysql.jdbc.Driver");
+		        } catch (ClassNotFoundException e) {
+		        	System.out.print("ClassNotFound in getCompanies");
+		            e.printStackTrace();
+		        }        
+				String db =Constant.URL;
+				String user =  Constant.DBUserName;
+				String pwd = Constant.DBPassword;
+				String sql = "SELECT * from Company";
+				
+				if(sort.equals("dateadded")) {
+					sql = "{CALL dateadded(?)}";
 				}
+				else if(sort.equals("alphabetical")) {
+					sql += " ORDER BY companyName";
+				}
+				else {
+					System.out.println("else in getCompanies");
+				}
+				
+				try(Connection conn = DriverManager.getConnection(db,user,pwd);
+						PreparedStatement stmt = conn.prepareStatement(sql);){
+							if(keyWord==null) {
+								System.out.println("keyWord null");
+							}
+							else if (keyWord.compareTo("") != 0) {
+								sql += " WHERE companyName LIKE %" + keyWord + "%";
+							}
+							
+							ResultSet rs = stmt.executeQuery();
+							while(rs.next()) {
+								String compID = rs.getString("companyID");
+								setStages(compID);
+								Company newComp;
+								if(!email.equals("empty")) { //logged in
+									setProgress(compID, email);
+									newComp = new Company(compID, rs.getString("companyName"), rs.getInt("numApps"), stage, prog);
+								}
+								else {
+									newComp = new Company(compID, rs.getString("companyName"), rs.getInt("numApps"), stage);
+								}
+								Companies.add(newComp);
+							}
+					} catch(SQLException ex) {
+							System.out.println("SQLException: " + ex.getMessage() + " in getCompanies");
+					}
+	    	
+			
+	        //TODO get list of Company based on the param
+	        return Companies;
     	}
     	else {
+            ArrayList<Company> Companies = new ArrayList<Company>();
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+            	System.out.print("ClassNotFound in getCompanies");
+                e.printStackTrace();
+            }        
+    		String db =Constant.URL;
+    		String user =  Constant.DBUserName;
+    		String pwd = Constant.DBPassword;
+    		String sql = "SELECT * from Company";
     		
+    		if(sort.equals("dateadded")) {
+    			sql = "{CALL dateadded(?)}";
+    		}
+    		else if(sort.equals("alphabetical")) {
+    			sql += " ORDER BY companyName";
+    		}
+    		else {
+    			System.out.println("else in getCompanies");
+    		}
+    		
+    		try(Connection conn = DriverManager.getConnection(db,user,pwd);
+    				PreparedStatement stmt = conn.prepareStatement(sql);){
+    					if(keyWord==null) {
+    						System.out.println("keyWord null");
+    					}
+    					else if (keyWord.compareTo("") != 0) {
+    						sql += " WHERE companyName LIKE %" + keyWord + "%";
+    					}
+    					
+    					ResultSet rs = stmt.executeQuery();
+    					while(rs.next()) {
+    						Companies.add(new Company(rs.getString("companyID"), rs.getString("companyName"), rs.getInt("numApps")));
+    					}
+    			} catch(SQLException ex) {
+    					System.out.println("SQLException: " + ex.getMessage() + " in getCompanies");
+    			}
+    		
+            //TODO get list of Company based on the param
+            return Companies;
     	}
-		
-        //TODO get list of Company based on the param
-        return Companies;
-
     }
 }
 
