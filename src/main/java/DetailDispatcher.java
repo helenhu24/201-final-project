@@ -39,20 +39,24 @@ public class DetailDispatcher extends HttpServlet{
 		    	if (c.getName().compareTo("loginID") == 0) {
 		    		email = c.getValue();
 		    		loggedIn = true;
+		    		co.setProgress(id, email);
+		    		int progress = co.prog;
+		            request.setAttribute("progress", progress);
 		    		break;
 		    	}
 		    }
 		}
-		co.setProgress(id, email);
-		
-		int progress = co.prog;
+
+		String  name  = comp.getName();
+
 		ArrayList<String> stage = co.stage;
 		ArrayList<Integer> people = co.people;
 		
+//		System.out.println(stage.get(0));
         request.setAttribute("stage", stage);
         request.setAttribute("people", people);
-        request.setAttribute("company", comp);
-        request.setAttribute("progress", progress);
+        request.setAttribute("company", name);
+
         request.setAttribute("loggedIn", loggedIn);
         request.getRequestDispatcher("/CompanyDetails.jsp").forward(request, response);
     }

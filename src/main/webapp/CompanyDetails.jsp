@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@ page session="false" %>
-<%@page import="main.java.*, java.util.*" %>
+<%@page import=" java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -22,11 +22,12 @@
 <%
 	ArrayList<String> stage = (ArrayList<String>)request.getAttribute("stage");
 	ArrayList<Integer> people = (ArrayList<Integer>)request.getAttribute("people");
-	Object company = request.getAttribute("comp");
+	String companyname = (String)request.getAttribute("company");
 	Object progress = request.getAttribute("progress");
+	boolean  logginIn  =  (boolean)request.getAttribute("loggedIn");
 %>
-<c:forEach items = "${requestScope.company}" var = "company"}>
-<h1>${company.getName()}</h1><p>
+<%-- <c:forEach items = "${requestScope.company}" var = "company">--%>
+<h1><%=companyname%></h1><p>
 <div class='inpcontainer'>
   <div class='inpcontainer-item'>
   <div class='inpcontainer-detailsbox'>
@@ -47,16 +48,18 @@
   </div>
   </div>
 </div>
+<%if(loggedIn){ %>
 <div class='inpcontainer-status'>
 <h2>Your Status:</h2><br>
 <form id="changeStatus" action="changeStatus" method="post">
-  <% for(int i =0; i<stage.size();i++){%>
+  <%for(int i =0; i<stage.size();i++){%>
 		<input type="radio" id="stage1" name="status" value='<%=i%>' <%if(i==(Integer)progress){%>checked<%} %>><label for="stage1"><%=stage.get(i)%></label><p>
   <%} %>
 <button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
 </form>
 </div>
+<%} %>
 </div>
-</c:forEach>
+<%--</c:forEach> --%>
 </body>
 </html>

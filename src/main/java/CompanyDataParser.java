@@ -33,7 +33,8 @@ public class CompanyDataParser {
    * @return 
    */
   public static void setStages(String id){
-  	Map<Integer,String> m = new TreeMap<Integer, String>();
+  	stage.clear();
+  	people.clear();
       try {
           Class.forName("com.mysql.jdbc.Driver");
   
@@ -125,7 +126,7 @@ public class CompanyDataParser {
 					
 					}
 					
-					//return bus;
+					return bus;
 			} catch(SQLException ex) {
 					System.out.println("SQLException: " + ex.getMessage() + " in getCompanyName");
 			}
