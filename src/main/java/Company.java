@@ -10,11 +10,14 @@ public class Company {
 	
 	ArrayList<String> stages;
 	
-	public Company(String companyID, String companyName, int numApps) {
+	public int progress;
+	
+	public Company(String companyID, String companyName, int numApps, ArrayList<String> stages) {
 		// TODO Auto-generated constructor stub
 		this.id = companyID;
 		this.name = name;
 		this.numApps = numApps;
+		this.stages = stages;
 	}
 
 	public Company() {
@@ -43,6 +46,18 @@ public class Company {
 	
 	public void setNumApps(int numApps) {
 		this.numApps = numApps;
+	}
+	
+	public ArrayList<String> getStages() {
+		return stages;
+	}
+	
+	public int getProgress() {
+	return progress;
+	}
+	
+	public void setProgress(int progress) {
+		this.progress = progress;
 	}
 	
 }

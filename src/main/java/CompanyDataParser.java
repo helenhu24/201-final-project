@@ -172,7 +172,8 @@ public class CompanyDataParser {
 					
 					ResultSet rs = stmt.executeQuery();
 					while(rs.next()) {
-						Companies.add(new Company(rs.getString("companyID"), rs.getString("companyName"), rs.getInt("numApps")));
+						setStages(rs.getString("companyID"));
+						Companies.add(new Company(rs.getString("companyID"), rs.getString("companyName"), rs.getInt("numApps"), stage));
 					}
 			} catch(SQLException ex) {
 					System.out.println("SQLException: " + ex.getMessage() + " in getCompanies");
