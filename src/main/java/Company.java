@@ -1,3 +1,4 @@
+package main.java;
 import java.util.ArrayList;
 
 public class Company {
@@ -11,6 +12,13 @@ public class Company {
 	ArrayList<String> stages;
 	
 	public int progress;
+	
+	public Company(String companyID, String companyName, int numApps) {
+		// TODO Auto-generated constructor stub
+		this.id = companyID;
+		this.name = name;
+		this.numApps = numApps;
+	}
 	
 	public Company(String companyID, String companyName, int numApps, ArrayList<String> stages) {
 		// TODO Auto-generated constructor stub
