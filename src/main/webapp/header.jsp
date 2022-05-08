@@ -62,7 +62,10 @@ li a:hover {
 					%>
       </a></li>
       <li><a href="index.jsp">Dashboard</a></li>
-      <li><a href="AddCompany.jsp">Add New</a></li>
+      <li><% if (loggedIn) { %>
+         <a href="AddCompany.jsp">Add New</a>
+      <% } %>
+  	</li>
 </ul>
 </body>
 </html>
