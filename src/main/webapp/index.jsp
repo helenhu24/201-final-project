@@ -21,7 +21,7 @@
 	  
   }
 //  ArrayList<Company> arr = CompanyDataParser.getCompanies(keyWord,sort,"inProgress");
-  Object arr = request.getAttribute("arr");
+  ArrayList<Company> arr = (ArrayList<Company>)request.getAttribute("arr");
   %>
   
 <%@ include file="header.jsp" %><br>
@@ -48,42 +48,36 @@
 		  <option value="alphabetical">Name A-Z</option>
 		</select>
    	</div><br>
-<%
-	//String id = request.getParameter("");
-	CompanyDataParser co = new CompanyDataParser();
-	//Company comp = co.getCompany(id);
-	//co.setStages(id);
-	//ArrayList<String> stage = co.stage;
-	//ArrayList<Integer> people = co.people;
-%>
-<c:forEach items = "${requestScope.arr}" var = "company">
+
+<%// <c:forEach items = "${requestScope.arr}" var = "company">
+//<h1><c:out value = "${company.getName()}"/></h1><br>
+//<input type="hidden" name = "companyID" value="${company.getId()}">	%>
+<%for(int j = 0; j < arr.size();j++){ 
+	Company company = arr.get(j);%>
 	<div class='inpcontainer'>
 	  <div class='inpcontainer-item'>
 	  <div class='inpcontainer-detailsbox'>
 	  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
-	  <h1><c:out value = "${company.getName()}"/></h1><br>
-	  	<input type="hidden" name = "companyID" value="${company.getId()}">
-	  	<%	String id = %> ${company.getId()} <%; 
-	  	Company comp = co.getCompany(id);
-		co.setStages(id);
-		ArrayList<String> stage = co.stage;
-		ArrayList<Integer> people = co.people; %>
-		
+	  <h1><%=company.name%></h1><br>
+	  	<input type="hidden" name = "companyID" value="<%=company.id%>">	
 	  <h2>Software Engineer</h2><br>
 	  <div class='statuscontainer'>
 	  <h2>Your Status:</h2><br>
 		<form id="changeStatus" action="changeStatus" method="post">
-		  <% for(int i =0; i<people.size();i++){%>
-				<input type="radio" id="stage1" name="status" value='<%=i%>' <%if(comp.progress == i + 1){ %>checked<%} %>><label for="stage1"><%=stage.get(i)%></label><p>
-		  
-		  <%}%>
+		  <% for(int i =0; i<company.getStages().size();i++){%>
+				<input type="radio" id="stage1" name="status" value='<%=i%>' 
+				<%if(company.progress == i){ %>checked<% } %>>
+				<label for="stage1"><%=company.getStages().get(i)%></label><p>
+				<%}%>
+		
 		<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
 		</form>
 	  </div>
 	  </div>
 	  </div>
 	</div>
-</c:forEach>
+<%} %>
+<% //</c:forEach>%>
 
 
 <div class='inpcontainer'>
