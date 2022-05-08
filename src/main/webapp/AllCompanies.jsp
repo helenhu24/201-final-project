@@ -56,16 +56,16 @@
   		<div class='inpcontainer'>
 	  	<div class='inpcontainer-item'>
 	  	<div class='inpcontainer-detailsbox'>
-	  	<div class='inpcontainer-info'>
 	  	<form action="UserAdd" method="post">
+	  	<div class='inpcontainer-info'>
 	  	<h1><c:out value = "${company.getName()}"/></h1><br>
 	  	<input type="hidden" name = "companyID" value="${company.getId()}">
-	  		<h3>Is in your active applications.</h3>
-  		<div class='statuscontainer'>
+	  		<h3>Is not in your active applications.</h3>
+	  	</div>
+	  	<div class='statuscontainer'>
   		<button type="submit" onClick="submit(this.form)" class="addbutton">Add</button>
 	  	</div>
 	  	</form>
-	  	</div>
 	  	</div>
 	  	</div>
 	  	</div>
