@@ -72,7 +72,7 @@
   		</form>
   		<form action="DetailDispatcher" method="post">
 	  	<input type="hidden" name = "companyID" value="${company.getId()}">
-  		<button type="submit" onClick="submit(this.form)" class="addbutton">details</button>
+  		<button type="submit" onClick="submit(this.form)" class="addbutton">Details</button>
   		</form>
 	  	</div>
 	  	</div>

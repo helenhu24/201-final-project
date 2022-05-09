@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Add New Company</title>
+    <title>Company Details</title>
         <script type="text/javascript">
     function submit(form) {
     	form.submit();
@@ -23,6 +23,7 @@
 	ArrayList<String> stage = (ArrayList<String>)request.getAttribute("stage");
 	ArrayList<Integer> people = (ArrayList<Integer>)request.getAttribute("people");
 	String companyname = (String)request.getAttribute("company");
+	String companyid = (String)request.getAttribute("companyid");
 	Object progress = request.getAttribute("progress");
 	boolean  logginIn  =  (boolean)request.getAttribute("loggedIn");
 %>
@@ -51,10 +52,12 @@
 <%if(loggedIn){ %>
 <div class='inpcontainer-status'>
 <h2>Your Status:</h2><br>
-<form id="changeStatus" action="changeStatus" method="post">
-  <%for(int i =0; i<stage.size();i++){%>
-		<input type="radio" id="stage1" name="status" value='<%=i%>' <%if(i==(Integer)progress){%>checked<%} %>><label for="stage1"><%=stage.get(i)%></label><p>
+<form id="changeStatus" action="UpdateTracking" method="post">
+  <%for(int i =0; i< stage.size();i++){%>
+		<input type="radio" id="stage1" name="status" value='<%=i + 1%>' <%if(i==(Integer)progress - 1){%>checked<%} %>><label for="stage1"><%=stage.get(i)%></label><p>
   <%} %>
+  <input type="hidden" name = "companyID" value='<%=companyid%>'>
+  <input type="hidden" name = "status" value="status">
 <button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
 </form>
 </div>

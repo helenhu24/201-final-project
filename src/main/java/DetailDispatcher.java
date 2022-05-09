@@ -1,3 +1,5 @@
+package main.java;
+
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -56,6 +58,7 @@ public class DetailDispatcher extends HttpServlet{
         request.setAttribute("stage", stage);
         request.setAttribute("people", people);
         request.setAttribute("company", name);
+        request.setAttribute("companyid", id);
 
         request.setAttribute("loggedIn", loggedIn);
         request.getRequestDispatcher("/CompanyDetails.jsp").forward(request, response);

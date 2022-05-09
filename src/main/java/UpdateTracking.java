@@ -24,6 +24,13 @@ import java.util.ArrayList;
 //import java.io.Serial;
 import java.util.Scanner;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+@SpringBootApplication
+@RestController
 
 
 @WebServlet("/UpdateTracking")
@@ -44,9 +51,10 @@ public class UpdateTracking extends HttpServlet {
 	    	}
 	    }
 	    // Get company and status ID
+	    System.out.println(request.getParameter("companyID"));
+	    System.out.println(request.getParameter("status"));
 	    int id = Integer.parseInt(request.getParameter("companyID"));
 	    int stage = Integer.parseInt(request.getParameter("status"));
-	    
 	    // Update status
 	    String db = Constant.URL;
 		String user =  Constant.DBUserName;
@@ -66,7 +74,7 @@ public class UpdateTracking extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-        request.getRequestDispatcher("/SearchAll").forward(request, response);
+        request.getRequestDispatcher("/SearchInProgress").forward(request, response);
     }
 
     /**

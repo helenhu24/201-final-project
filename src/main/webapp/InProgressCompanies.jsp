@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="InProgressCompanies.css">
 </head>
 <body>
   
@@ -51,42 +51,22 @@
 	<div class='inpcontainer'>
 	  <div class='inpcontainer-item'>
 	  <div class='inpcontainer-detailsbox'>
-	  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
-	  <div class='inpcontainer-info'><h1><c:out value = "${company.getName()}"/></h1><br>
-	  <h2>Software Engineer</h2><br>
+	  <form id="deleteCompany" action="UserRemove" method="post">
 	  <input type="hidden" name = "companyID" value="${company.getId()}">
-		
+		<button type="submit" onClick="submit(this.form)" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
+		</form>
+	  <div class='inpcontainer-info'><h1><c:out value = "${company.getName()}"/></h1><br>
 	  <div class='statuscontainer'>
 	  <h2>Status:</h2><br>
-		<form id="changeStatus" action="changeStatus" method="post">
+		<form id="changeStatus" action="DetailDispatcher" method="post">
+		<input type="hidden" name = "companyID" value="${company.getId()}">
 		<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
 		</form>
 	  </div>
 	  </div>
 	  </div>
+	  </div>
 	</div>
 </c:forEach>
-
-
-<div class='inpcontainer'>
-  <div class='inpcontainer-item'>
-  <div class='inpcontainer-detailsbox'>
-  <button type="button" id = "delstage" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
-  <div class='inpcontainer-info'><h1>TESTING WORMS</h1><br>
-  <h2>Software Engineer</h2><br>
-  <h3>Date Added: 04/13/2022</h3></div>
-  <div class='statuscontainer'>
-  <form action="UpdateTracking" method="post">
-  <input type="hidden" name = "companyID" value="22">
-  	Status:
-  	<input type="radio" id="1" name="status" value="1"><label for="1">grubs</label>
-  	<input type="radio" id="2" name="status" value="2"><label for="2">dirt</label><br>
-  	<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button>
-  </form>
-  </div>
-  </div>
-  </div>
-</div>
-
 </body>
 </html>
