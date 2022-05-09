@@ -69,7 +69,7 @@ public class UserAdd extends HttpServlet{
 	                	int people = rs.getInt("people");
 	                	people+=1;
 	                	String sqlupdate = "Update stages set people = ? where companyID = ? and stepnum = 1";
-	                	PreparedStatement st2 = conn.prepareStatement(sql2);
+	                	PreparedStatement st2 = conn.prepareStatement(sqlupdate);
 	                	st2.setInt(1, people);
 	                	st2.setInt(2, num);
 	                	st2.executeUpdate();
