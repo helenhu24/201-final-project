@@ -13,10 +13,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+@SpringBootApplication
+@RestController
 
 //gay
 
-@WebServlet("/addCompany")
+@WebServlet(urlPatterns = "/addCompany/*", loadOnStartup = 1)
 public class addCompany extends HttpServlet{
 
 	/**
@@ -70,7 +77,7 @@ public class addCompany extends HttpServlet{
 			}
 			catch(NumberFormatException e) {} catch (ClassNotFoundException e) {} catch (SQLException e) {}
 		}
-		response.sendRedirect("AllCompanies.jsp");
+		response.sendRedirect("/SearchAll");
 
     }
     

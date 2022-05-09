@@ -143,6 +143,25 @@ label {
 	cursor: pointer;
 }
 
+.addcompanybutton {
+	all: unset;
+	text-align: center;
+	position: relative;
+	color: white;
+	background: #2947A9;
+	border-radius: 35px;
+	height: 26px;
+	width: 200px;
+	margin-top: 86px;
+	font-family: 'Work Sans';
+	font-weight: 100;
+	font-size: 14px;
+}
+
+.addcompanybutton:hover {
+	cursor: pointer;
+}
+
 th {
 	font-size: 22px;
 	color: #2947A9;

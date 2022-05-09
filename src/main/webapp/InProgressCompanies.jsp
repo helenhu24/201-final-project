@@ -60,6 +60,7 @@
 	  <h2>Status:</h2><br>
 		<form id="changeStatus" action="DetailDispatcher" method="post">
 		<input type="hidden" name = "companyID" value="${company.getId()}">
+		<input type="hidden" name = "companyadded" value="1">
 		<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
 		</form>
 	  </div>

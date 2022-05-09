@@ -24,6 +24,7 @@
 	ArrayList<Integer> people = (ArrayList<Integer>)request.getAttribute("people");
 	String companyname = (String)request.getAttribute("company");
 	String companyid = (String)request.getAttribute("companyid");
+	String added = (String)request.getAttribute("companyadded");
 	Object progress = request.getAttribute("progress");
 	boolean  logginIn  =  (boolean)request.getAttribute("loggedIn");
 %>
@@ -51,6 +52,13 @@
 </div>
 <%if(loggedIn){ %>
 <div class='inpcontainer-status'>
+<%if(added.equals("0")) { %>
+<form id="addCompany" action="UserAdd" method="post">
+  <input type="hidden" name = "companyID" value='<%=companyid%>'>
+<button type="submit" onClick="submit(this.form)" class="addcompanybutton">Add Company</button><p>
+</form>
+</div>
+<%} else { %>
 <h2>Your Status:</h2><br>
 <form id="changeStatus" action="UpdateTracking" method="post">
   <%for(int i =0; i< stage.size();i++){%>
@@ -62,7 +70,7 @@
 </form>
 </div>
 <%} %>
-</div>
+<%} %>
 <%--</c:forEach> --%>
 </body>
 </html>

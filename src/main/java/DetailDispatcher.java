@@ -34,6 +34,7 @@ public class DetailDispatcher extends HttpServlet{
 		Company comp = CompanyDataParser.getCompany(id);
 		CompanyDataParser.setStages(id);
 		String email = "";
+		String companyadded = request.getParameter("companyadded");
 		
 		boolean loggedIn = false;
 		if(request.getCookies() != null) {
@@ -59,6 +60,7 @@ public class DetailDispatcher extends HttpServlet{
         request.setAttribute("people", people);
         request.setAttribute("company", name);
         request.setAttribute("companyid", id);
+        request.setAttribute("companyadded", companyadded);
 
         request.setAttribute("loggedIn", loggedIn);
         request.getRequestDispatcher("/CompanyDetails.jsp").forward(request, response);
