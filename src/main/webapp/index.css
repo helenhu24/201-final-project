@@ -7,21 +7,20 @@ body {
 
 .inpcontainer {
   display: flex;
-  align-items: left;
-  justify-content: left;
+align-items: center;
+	text-align: center;
 }
 
 .inpcontainer-item {
 	display: flex;
 	width: 86%;
 	height: 100%;
-	text-align: left;
+	align-items: center;
+	text-align: center;
 	flex-wrap: wrap
 }
 
 .inpcontainer-detailsbox {
-	display: flex;
-	flex-basis: column;
 	position: relative;
 	width: 100%;
 	min-height: 140px;
@@ -31,6 +30,8 @@ body {
 	background: #FFFFFF;
 	box-shadow: 3px 7px 10px rgba(0, 0, 0, 0.09);
 	border-radius: 20px;
+	align-items: center;
+	text-align: center;
 }
 
 .inpcontainer-info {
@@ -41,8 +42,6 @@ body {
 }
 
 h1 {
-	all: unset;
-	display: inline-block;
 	font-style: semibold;
 	font-weight: 900;
 	font-size: 30px;
@@ -52,8 +51,6 @@ h1 {
 }
 
 h2 {
-	all: unset;
-	display: inline-block;
 	font-weight: 600;
 	font-size: 16px;
 	color: #1A1D1E;
@@ -63,7 +60,6 @@ h2 {
 
 h3 {
 	all: unset;
-	display: inline-block;
 	font-style: semibold;
 	font-weight: 400;
 	font-size: 12px;

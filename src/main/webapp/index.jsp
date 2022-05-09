@@ -49,6 +49,19 @@
 		  <option value="alphabetical">Name A-Z</option>
 		</select>
    	</div><br>
-
+<div class='inpcontainer'>
+	  <div class='inpcontainer-item'>
+	  <div class='inpcontainer-detailsbox'>
+	  <h1>Welcome!</h1><p>
+	  <%if(loggedIn){ %>
+	<h2>Select "In Progress" to view your tracked companies, or "All Companies" to find more!</h2>
+<%} else{ %>
+	<h2>Please register to begin tracking, or click "All Companies" to browse.</h2>
+<%} %>
+	  </div>
+	  </div>
+	  </div>
+	  </div>
+	</div>
 </body>
 </html>

@@ -30,13 +30,17 @@
 	<input type="hidden" name="loggedIn" value="false"> 
 <%} %>
 
+
+
 <div class='optioncontainer'>
-  <a href="index.jsp"><button class="optionbutton">In Progress</button></a>
+  <form action="SearchInProgress" method="post">
+  <button class="optionbutton" onClick="submit(this.form)">In Progress</button>
+  </form>
   <form action="SearchAll" method="post">
   <button class="optionbutton2" onClick="submit(this.form)">All Companies</button>
   </form>
   <form action="SearchInProgress" method="post">
-  <button type="button" id = "searchgo" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
+  <button type="button" id = "searchgo" onClick="submit(this.form)" class="searchbutton"><i class="fa-solid fa-magnifying-glass"></i></button>
 		<input type="text" id="search" name="search" placeholder=" ">
   </form>
   </div>
@@ -51,22 +55,22 @@
 	<div class='inpcontainer'>
 	  <div class='inpcontainer-item'>
 	  <div class='inpcontainer-detailsbox'>
+	  <div class='inpcontainer-info'><h1><c:out value = "${company.getName()}"/></h1><br>
+	  <h3>Is in your active applications.</h3>
+	  <div class='statuscontainer'>
+		<form id="changeStatus" action="DetailDispatcher" method="post">
+		<input type="hidden" name = "companyID" value="${company.getId()}">
+		<input type="hidden" name = "companyadded" value="1">
+		<button type="submit" onClick="submit(this.form)" class="addbutton">Update Status</button>
+		</form>
+	  </div>
+	  </div>
+	  </div>
+	  </div>
 	  <form id="deleteCompany" action="UserRemove" method="post">
 	  <input type="hidden" name = "companyID" value="${company.getId()}">
 		<button type="submit" onClick="submit(this.form)" class="delbutton"><i class="fa-solid fa-xmark"></i></button>
 		</form>
-	  <div class='inpcontainer-info'><h1><c:out value = "${company.getName()}"/></h1><br>
-	  <div class='statuscontainer'>
-	  <h2>Status:</h2><br>
-		<form id="changeStatus" action="DetailDispatcher" method="post">
-		<input type="hidden" name = "companyID" value="${company.getId()}">
-		<input type="hidden" name = "companyadded" value="1">
-		<button type="submit" onClick="submit(this.form)" class="changestatusbutton">Update Status</button><p>
-		</form>
-	  </div>
-	  </div>
-	  </div>
-	  </div>
 	</div>
 </c:forEach>
 </body>

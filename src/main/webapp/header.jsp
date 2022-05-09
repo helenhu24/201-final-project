@@ -66,7 +66,7 @@ li a:hover {
     	else out.println("Login / Register");
 					%>
       </a></li>
-      <li><a href="index.jsp">Dashboard</a></li>
+      <li><a href="/SearchInProgress">Dashboard</a></li>
       <li><% if (loggedIn) { %>
          <a href="AddCompany.jsp">Add New</a>
       <% } %>

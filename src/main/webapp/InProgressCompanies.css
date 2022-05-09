@@ -24,7 +24,7 @@ body {
 	flex-basis: column;
 	position: relative;
 	width: 100%;
-	min-height: 130px;
+	min-height: 105px;
 	min-width: 500px;
 	margin-left: 17%;
 	margin-bottom: 30px;
@@ -74,14 +74,13 @@ h3 {
 }
 
 .statuscontainer {
-	margin-left: 185px;
-	width: 45%;
+	position: relative;
+	width: 60%;
 	font-size: 24px;
 	font-weight: 340;
 	text-align: top;
-	left: 360px;
-	bottom: 28%;
-	margin-top: 50px;
+	left: 70%;
+	bottom: 48%;
 	align-items: center;
 }
 
@@ -119,7 +118,8 @@ label {
 	font-family: 'Work Sans';
 	font-weight: 300;
 	font-size: 14px;
-	margin-left: 40px;
+	left: 100%;
+	margin-left: 130px;
 }
 
 .delbutton {
@@ -128,27 +128,15 @@ label {
     border:none;
     font-size: 24px;
     color:  #EA0B0B;
-    cursor: pointer;
     position: relative;
-    left: 97%;
-    bottom: 30%;
+    right: 30px;
+    top: 10%;
+    margin-right: 10%;
 }
 
 
 .addbutton:hover {
 	cursor: pointer;
-}
-
-.delbutton {
-	all: unset;
-	background:none;
-    border:none;
-    font-size: 24px;
-    color:  #EA0B0B;
-    cursor: pointer;
-    position: relative;
-    left: 97%;
-    bottom: 30%;
 }
 
 .optioncontainer {
