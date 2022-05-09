@@ -35,7 +35,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Servlet implementation class UserAdd
  */
-@WebServlet("/UserAdd")
 public class UserAdd extends HttpServlet{
     private static final long serialVersionUID = 1L;
     
@@ -55,14 +54,25 @@ public class UserAdd extends HttpServlet{
 	    		String db =Constant.URL;
 	    		String user =  Constant.DBUserName;
 	    		String pwd = Constant.DBPassword;
-	    		String sql = "Insert into bridge values(?,?,0)";
+	    		String sql = "Insert into bridge values(?,?,1)";
 	    		try(Connection conn = DriverManager.getConnection(db,user,pwd);
 	    				PreparedStatement stmt = conn.prepareStatement(sql);){
 	                	Class.forName("com.mysql.jdbc.Driver");
 	                	stmt.setString(1, email);
 	                	stmt.setInt(2, num);
 	                	stmt.executeUpdate();
-	                	
+	                	String sql2 = "Select people from stages where companyID = ? and stepnum = 1";
+	                	PreparedStatement st = conn.prepareStatement(sql2);
+	                	st.setInt(1, num);
+	                	ResultSet rs = st.executeQuery();
+	                	rs.next();
+	                	int people = rs.getInt("people");
+	                	people+=1;
+	                	String sqlupdate = "Update stages set people = ? where companyID = ? and stepnum = 1";
+	                	PreparedStatement st2 = conn.prepareStatement(sql2);
+	                	st2.setInt(1, people);
+	                	st2.setInt(2, num);
+	                	st2.executeUpdate();
 	    		} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -70,13 +80,13 @@ public class UserAdd extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	            request.getRequestDispatcher("/SearchInProgress").forward(request, response);
+	            request.getRequestDispatcher("/SearchAll").forward(request, response);
 	            break;
 	    	}
 	    }
 	    if(notlog) {
 	    	request.setAttribute("unableAdd", "Unable to add Company to list because user is not logged in!");
-	    	request.getRequestDispatcher("/Register.jsp").forward(request, response);
+	    	request.getRequestDispatcher("/AllCompanies.jsp").forward(request, response);
 	    }
     	
     }
