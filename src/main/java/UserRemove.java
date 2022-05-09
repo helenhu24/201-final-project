@@ -1,5 +1,5 @@
 
-package main.java;
+//package main.java;
 
 
 
@@ -55,13 +55,13 @@ public class UserRemove extends HttpServlet{
 	    		try(Connection conn = DriverManager.getConnection(db,user,pwd);
 	    				PreparedStatement stmt = conn.prepareStatement(sql);){
 	                	Class.forName("com.mysql.jdbc.Driver");
-	                	stmt.setString(1, email);
-	                	stmt.setInt(2, num);
+	                	stmt.setString(2, email);
+	                	stmt.setInt(1, num);
 	                	ResultSet rs3 = stmt.executeQuery();
 	                	rs3.next();
 	                	int progress = rs3.getInt("progress");
 	                	
-	                	String sqlpro = "delete from bridge where companyID = ? and loginID = '?'";
+	                	String sqlpro = "delete from bridge where companyID = ? and loginID = ?";
 	                	PreparedStatement st3 = conn.prepareStatement(sqlpro);
 	                	st3.setInt(1, num);
 	                	st3.setString(2, email);
@@ -76,7 +76,7 @@ public class UserRemove extends HttpServlet{
 	                	int people = rs.getInt("people");
 	                	people-=1;
 	                	String sqlupdate = "Update stages set people = ? where companyID = ? and stepnum = 1";
-	                	PreparedStatement st2 = conn.prepareStatement(sql2);
+	                	PreparedStatement st2 = conn.prepareStatement(sqlupdate);
 	                	st2.setInt(1, people);
 	                	st2.setInt(2, num);
 	                	st2.executeUpdate();
