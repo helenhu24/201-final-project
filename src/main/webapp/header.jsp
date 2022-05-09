@@ -11,7 +11,7 @@ body {
 }
 
 ul {
-  padding: 20px 80px 0px 40px;
+  padding: 10px 80px 0px 40px;
   list-style-type: none;
   overflow: hidden;
 }
@@ -33,6 +33,15 @@ li a {
 
 li a:hover {
   color: #5A5A5A;
+}
+
+.imgcontainer {
+	margin-left: 36px;
+	margin-right: 72px;
+}
+
+.right {
+  float: right;
 }
 
 </style>
@@ -71,6 +80,8 @@ li a:hover {
          <a href="AddCompany.jsp">Add New</a>
       <% } %>
   	</li>
+  	<li><span class="right"><img src="logo.png"></span></li>
+	
 </ul>
 </body>
 </html>
